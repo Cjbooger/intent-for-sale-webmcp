@@ -158,12 +158,12 @@ export function App() {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <div className="brand" aria-label="Intent for Sale"><span>INTENT</span><b>//</b><span>FOR SALE</span></div>
-        <div className="session-chip"><span>SESSION</span><code>{model.sessionId}</code><button className="icon-button" aria-label="Copy session ID" title="Copy session ID" onClick={onCopySession}>{sessionCopied ? "✓" : "▢"}</button></div>
+        <div className="brand" aria-label="Intent for Sale"><span className="brand-name"><span>INTENT</span><b>//</b><span>FOR SALE</span></span><small>DECISION COMMERCE SYSTEMS</small></div>
+        <div className="session-chip"><span><b>SESSION</b><small>LOCAL INSTANCE</small></span><code>{model.sessionId}</code><button className="icon-button" aria-label="Copy session ID" title="Copy session ID" onClick={onCopySession}>{sessionCopied ? "✓" : "▢"}</button></div>
         <WebMCPStatus status={model.webmcp} />
-        <div className="pressure-block" aria-label={`Commercial pressure ${pressure} percent`}><span>COMMERCIAL PRESSURE</span><div className="pressure-track"><i style={{ width: `${pressure}%` }} /></div><strong>{pressure}%</strong><em>{pressure > 0 ? "HIGH" : "CLEAR"}</em></div>
+        <div className={`pressure-block ${pressure > 0 ? "is-pressurized" : "is-clear"}`} aria-label={`Commercial pressure ${pressure} percent`}><span className="pressure-label"><b>COMMERCIAL PRESSURE</b><small>DISCLOSED INFLUENCE</small></span><div className="pressure-track"><i style={{ width: `${pressure}%` }} /></div><strong>{pressure}%</strong><em>{pressure > 0 ? "HIGH" : "CLEAR"}</em></div>
       </header>
-      <div className="notice-bar"><span className="notice-dot" /><strong>FICTIONAL SIMULATION</strong><span>All brands, bids, claims, payouts, and selections are synthetic. Nothing can be purchased.</span><button className="text-button" onClick={onReset}>Reset demo</button></div>
+      <div className="notice-bar" role="note"><span className="notice-dot" /><div className="notice-copy"><strong>FICTIONAL SIMULATION</strong><span>All brands, bids, claims, payouts, and selections are synthetic. Nothing can be purchased.</span></div><b className="notice-guard">NO PURCHASE</b><button className="text-button" onClick={onReset}>Reset demo</button></div>
       <main className="dashboard" aria-label="Intent for Sale market operations console">
         <aside className="left-column"><IntentManifest intent={model.intent} phase={model.phase} signalsEnabled={Boolean(model.intent.allowInferredSignals || model.policy.allowInferredSignals)} onCreate={onCreateIntent} /><PolicyConsole policy={policyView} phase={model.phase} onApply={onApplyCleanRoom} onPolicyChange={(next) => runAction("setRecommendationPolicy", [{ sessionId: model.sessionId, ...next }])} /><ActivityLedger entries={model.ledger} currentPhase={model.phase} /></aside>
         <section className="center-column"><RecommendationBoard offers={model.offers} cleanOffers={model.cleanOffers} phase={model.phase} compared={model.compared} onAudit={onAudit} onStage={(offerId) => setSelectionOfferId(offerId)} /><InfluenceReceipt offer={selectedReceipt} receipt={model.receipt} phase={model.phase} /></section>
