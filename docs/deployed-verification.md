@@ -15,11 +15,11 @@ The verified release was the public `main` build at commit `a6fa300`.
 | Public deployment | Proven | The HTTPS page returned `200` from GitHub Pages. The HTML referenced the deployed hashed JavaScript and CSS assets; each returned `200`. |
 | Public artifact content | Proven | The deployed JavaScript contains the seven canonical tool names and the `document.modelContext`/`registerTool` registration path. |
 | Registration contract and handlers | Simulated/unit-tested | The repository's automated suite passes 22 tests, including exactly-seven registration, lifecycle cleanup, schemas, state ordering, and shared handlers. These tests do not prove a deployed host can enumerate or call the tools. |
-| Native WebMCP discovery and invocation | Proven | Two independent fresh in-app-browser documents, marked `?proof=session-1` and `?proof=session-2`, each visibly reported `WebMCP active` and `7 tools registered`. The host enumerated exactly the seven tools listed below, and both sessions invoked all seven in order. |
+| Native WebMCP discovery and invocation | Proven | Two independent fresh WebMCP-capable browser-host sessions, marked `?proof=session-1` and `?proof=session-2`, each visibly reported `WebMCP active` and `7 tools registered`. The host enumerated exactly the seven tools listed below, and both sessions invoked all seven in order. |
 | Unsupported-browser detection | Proven | A fresh Chrome tab displayed `WebMCP unavailable — manual fallback enabled` and exposed no WebMCP tab capability. |
 | Manual fallback | Proven | The complete sequence finished in Chrome: intent → auction → market ranking → influence receipt → clean-room policy → comparison → confirmed fictional staged selection. Final state was `SELECTION_STAGED`; the page stated that no purchase occurred. |
 | Console | Proven for these runs | Error and warning logs were empty in both native WebMCP sessions and the Chrome fallback run. This is not a claim about every browser host. |
-| Network/assets | Partially proven | The deployed asset inventory observed one JavaScript file, one stylesheet, and the site favicon. This is not a full HAR or universal no-network claim. |
+| Network/assets | Partially proven | The observed deployed asset inventory consisted of one JavaScript file and one stylesheet. This is not a full HAR or universal no-network claim. |
 
 ## Native WebMCP proof
 
