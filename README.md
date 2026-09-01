@@ -71,6 +71,13 @@ npm audit --audit-level=high
 Playwright starts a loopback-only Vite server at `http://127.0.0.1:4173` for the
 browser test.
 
+## Public deployment
+
+The GitHub Pages release target is
+[`https://cjbooger.github.io/intent-for-sale-webmcp/`](https://cjbooger.github.io/intent-for-sale-webmcp/).
+The workflow and the static runtime boundary are documented in
+[docs/deployment.md](docs/deployment.md).
+
 ## Architecture
 
 ```text
