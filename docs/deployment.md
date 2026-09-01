@@ -9,6 +9,10 @@ from the lockfile, typechecks, runs the unit suite, builds `dist/`, and deploys
 that artifact using GitHub's Pages/OIDC actions. The workflow does not use
 repository secrets or enable any backend, database, payment, or analytics path.
 
+Before the first deployment, the repository's Pages source must be set to
+**GitHub Actions** at `Settings -> Pages -> Source` (or configured through the
+equivalent GitHub API setting).
+
 Vite uses `/` for development and test servers and
 `/intent-for-sale-webmcp/` for production builds. The Playwright suite therefore
 continues to exercise the loopback dev server; the deployed smoke check should
