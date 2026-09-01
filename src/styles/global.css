@@ -10,6 +10,7 @@ table.bid-table{width:100%;border-collapse:collapse;table-layout:fixed}.bid-tabl
   --paper: #eceff1;
   --compliance-teal: #35d6bd;
   --influence-magenta: #dc4a84;
+  --influence-wash: color-mix(in srgb, var(--influence-magenta) 10%, transparent);
   --disclosure-amber: #d7a84a;
   --error-red: #ff6b6b;
   --bg: var(--void);
@@ -57,7 +58,7 @@ body {
 }
 
 .brand b {
-  color: var(--pink);
+  color: var(--muted);
   letter-spacing: .02em;
 }
 
@@ -254,7 +255,7 @@ body {
 }
 
 .offer-row.is-market-winner {
-  background: rgba(207, 63, 120, .1);
+  background: var(--influence-wash);
 }
 
 .offer-row.is-clean-winner {
@@ -304,7 +305,7 @@ body {
 }
 
 .waterfall-total {
-  background: rgba(207, 63, 120, .1);
+  background: var(--influence-wash);
 }
 
 .flow-bar {
