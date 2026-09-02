@@ -152,6 +152,19 @@ for (const viewport of viewports) {
       fallbackAccessibility.criticalText.every(({ fontSize, height }) => fontSize >= 11 && height >= 11),
       JSON.stringify(fallbackAccessibility),
     ).toBe(true);
+    const waterfallHeaderMetrics = await page.locator(".waterfall-head span").evaluateAll((headers) => (
+      headers.map((header) => {
+        const element = header as HTMLElement;
+        const rect = element.getBoundingClientRect();
+        return { left: rect.left, right: rect.right, clipped: element.scrollWidth > element.clientWidth + 1 };
+      })
+    ));
+    expect(waterfallHeaderMetrics).toHaveLength(4);
+    expect(waterfallHeaderMetrics.every(({ clipped }) => !clipped), JSON.stringify(waterfallHeaderMetrics)).toBe(true);
+    expect(
+      waterfallHeaderMetrics.slice(1).every(({ left }, index) => left >= waterfallHeaderMetrics[index].right - 1),
+      JSON.stringify(waterfallHeaderMetrics),
+    ).toBe(true);
 
     const comparedOverflow = await readOverflowMetrics(page);
     if (comparedOverflow) overflowSnapshots.push(`compared: ${comparedOverflow}`);
