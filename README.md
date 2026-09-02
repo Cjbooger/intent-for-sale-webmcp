@@ -51,7 +51,8 @@ available and the page reports the limitation honestly.
 
 ## Run locally
 
-Requirements: a current Node.js LTS release and npm.
+Requirements: Node.js 22 LTS or 24+ and npm. CI uses Node.js 22 and the Pages
+workflow uses Node.js 24.
 
 ```bash
 npm ci
@@ -66,6 +67,14 @@ npm run test:run
 npm run build
 npm run test:e2e
 npm audit --audit-level=high
+```
+
+`npm ci` installs the JavaScript dependencies but not Playwright's browser binaries.
+On a machine without the cached Chromium browser, install it once before the E2E
+gate:
+
+```bash
+npx playwright install chromium
 ```
 
 Playwright starts a loopback-only Vite server at `http://127.0.0.1:4173` for the
