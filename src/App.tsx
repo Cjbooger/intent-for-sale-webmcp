@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ActivityLedger } from "./components/ActivityLedger";
 import { Bidstream } from "./components/Bidstream";
 import { InfluenceReceipt } from "./components/InfluenceReceipt";
+import { InfluenceTrace } from "./components/InfluenceTrace";
 import { IntentManifest } from "./components/IntentManifest";
 import { PolicyConsole } from "./components/PolicyConsole";
 import { RecommendationBoard } from "./components/RecommendationBoard";
@@ -134,6 +135,15 @@ export function App() {
     return result;
   };
   const selectedReceipt = model.offers.find((offer) => offer.id === receiptOfferId) ?? model.offers[0] ?? DEFAULT_OFFERS[0]!;
+  const traceMarketWinner = model.marketRanked ? model.offers.find((offer) => offer.marketRank === 1) : undefined;
+  const traceReceipt =
+    ["AUDITED", "POLICY_UPDATED", "COMPARED", "SELECTION_STAGED"].includes(model.phase) &&
+    traceMarketWinner &&
+    model.receipt?.offerId === traceMarketWinner.id
+      ? model.receipt
+      : null;
+  const tracePolicyChanged = ["POLICY_UPDATED", "COMPARED", "SELECTION_STAGED"].includes(model.phase);
+  const traceCleanWinner = model.compared ? model.cleanOffers.find((offer) => offer.cleanRoomRank === 1) : undefined;
   const policyView: PolicyView = model.policy;
   const onCreateIntent = () => runAction("createIntentSession", [DEFAULT_INTENT]);
   const onAuction = () => runAction("runSimulatedAdAuction", [{ sessionId: model.sessionId, auctionMode: "weighted_relevance" }]);
@@ -166,7 +176,7 @@ export function App() {
       <div className="notice-bar" role="note"><span className="notice-dot" /><div className="notice-copy"><strong>FICTIONAL SIMULATION</strong><span>All brands, bids, claims, payouts, and selections are synthetic. Nothing can be purchased.</span></div><b className="notice-guard">NO PURCHASE</b><button className="text-button" onClick={onReset}>Reset demo</button></div>
       <main className="dashboard" aria-label="Intent for Sale market operations console">
         <aside className="left-column"><IntentManifest intent={model.intent} phase={model.phase} signalsEnabled={Boolean(model.intent.allowInferredSignals || model.policy.allowInferredSignals)} onCreate={onCreateIntent} /><PolicyConsole policy={policyView} phase={model.phase} onApply={onApplyCleanRoom} onPolicyChange={(next) => runAction("setRecommendationPolicy", [{ sessionId: model.sessionId, ...next }])} /><ActivityLedger entries={model.ledger} currentPhase={model.phase} /></aside>
-        <section className="center-column"><RecommendationBoard offers={model.offers} cleanOffers={model.cleanOffers} phase={model.phase} compared={model.compared} onAudit={onAudit} onStage={(offerId) => setSelectionOfferId(offerId)} /><InfluenceReceipt offer={selectedReceipt} receipt={model.receipt} phase={model.phase} /></section>
+        <section className="center-column"><InfluenceTrace marketWinner={traceMarketWinner} receipt={traceReceipt} policy={policyView} policyChanged={tracePolicyChanged} cleanWinner={traceCleanWinner} /><RecommendationBoard offers={model.offers} cleanOffers={model.cleanOffers} phase={model.phase} compared={model.compared} onAudit={onAudit} onStage={(offerId) => setSelectionOfferId(offerId)} /><InfluenceReceipt offer={selectedReceipt} receipt={model.receipt} phase={model.phase} /></section>
         <aside className="right-column"><Bidstream bids={model.bids} complete={model.auctionComplete} phase={model.phase} /><SelectionConfirmation selectedOffer={model.offers.find((offer) => offer.id === model.selectedOfferId) ?? null} pendingOffer={model.offers.find((offer) => offer.id === selectionOfferId) ?? null} confirmationSource={store.stagedSelection?.confirmationSource ?? null} onConfirm={onConfirm} onCancel={() => setSelectionOfferId(null)} /></aside>
       </main>
       <nav className="flow-bar" aria-label="Manual fallback controls"><div className="flow-label"><span>MANUAL FALLBACK</span><small>Same handlers as WebMCP tools</small></div><button disabled={step > 0} onClick={onCreateIntent}>01 Create intent</button><button disabled={step < 1 || step > 1} onClick={onAuction}>02 Run auction</button><button disabled={step < 2 || step > 2} onClick={onMarket}>03 Rank market</button><button disabled={step < 3 || step > 4} onClick={() => onAudit(model.offers[0]?.id ?? "omnimotion-ultra")}>04 Inspect receipt</button><button disabled={step < 4 || step > 5} onClick={onApplyCleanRoom}>05 Clean room</button><button disabled={!model.compared} onClick={() => setSelectionOfferId("kinoforge-studio")}>06 Stage KinoForge</button></nav>
