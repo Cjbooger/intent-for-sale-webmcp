@@ -332,7 +332,7 @@ select:focus-visible {
   outline-color: var(--teal);
 }
 
-/* ROT-94 shell pass: reserve color for meaning, not ornament. */
+/* Reserve shell color for meaning, not ornament. */
 .topbar {
   height: 74px;
   grid-template-columns: 230px minmax(260px, .9fr) minmax(230px, .8fr) minmax(330px, 1.2fr);
@@ -536,6 +536,28 @@ select:focus-visible {
 }
 
 @media (max-width: 760px) {
+  .topbar {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .webmcp-status {
+    padding-inline: 12px;
+  }
+
+  .webmcp-status small {
+    display: block;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.25;
+  }
+
+  .webmcp-status small b {
+    display: inline-block;
+    margin-right: 7px;
+  }
+
   .brand {
     padding-inline: 16px;
   }
@@ -560,6 +582,18 @@ select:focus-visible {
     grid-template-columns: minmax(0, auto) minmax(0, 1fr) auto auto;
     gap: 8px;
     padding-inline: 12px;
+  }
+
+  .receipt-summary {
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .receipt-summary dl {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    justify-content: initial;
   }
 }
 
