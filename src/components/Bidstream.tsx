@@ -50,7 +50,7 @@ export function Bidstream({ bids, complete, phase }: { bids: any[]; complete: bo
   const waiting = phase === "EMPTY" || phase === "INTENT_READY";
 
   return (
-    <Panel title="Live bidstream" eyebrow="Synthetic exchange" action={<span className={`live-state ${complete ? "is-live" : ""}`}><i />{complete ? "LIVE" : "STANDBY"}</span>}>
+    <Panel title="Live bidstream" eyebrow="Synthetic exchange" action={<span className={`live-state ${complete ? "is-live" : ""}`}><i />{complete ? "LIVE" : "STANDBY"}</span>} className="bidstream-panel">
       <table className="bid-table" aria-label="Synthetic advertiser bids">
         <thead>
           <tr><th>Time</th><th>Bidder / offer</th><th>CPA</th><th>Norm.</th><th>Status</th></tr>
