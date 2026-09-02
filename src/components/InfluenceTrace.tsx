@@ -58,7 +58,7 @@ export function InfluenceTrace({ marketWinner, receipt, policy, policyChanged, c
     <Panel
       title="Influence trace"
       eyebrow="Why the recommendation changed"
-      className="trace-panel"
+      className="trace-panel narrative-rail"
     >
       <p className="trace-intro">
         Follow one answer from the commercial market through the policy intervention to the clean room.
