@@ -55,6 +55,9 @@ controls. Outputs containing fictional advertiser claims are marked as untrusted
 content. In a browser without WebMCP support, the complete manual fallback remains
 available and the page reports the limitation honestly.
 
+The exact inputs, envelopes, data shapes, transitions, and registration boundary are
+documented in the [public WebMCP API contract](docs/webmcp-api.md).
+
 ## Run locally
 
 Requirements: Node.js 22 LTS or 24+ and npm. CI uses Node.js 22 and the Pages
