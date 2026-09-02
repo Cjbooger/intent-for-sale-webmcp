@@ -6,7 +6,26 @@ browser fallback.
 
 Target: <https://cjbooger.github.io/intent-for-sale-webmcp/>
 
-The verified release was the public `main` build at commit `a6fa300`.
+Native WebMCP discovery and invocation, the manual fallback flow, and the visual
+captures were revalidated against the public `main` build at commit
+`b959728d8121803e239dd08a510ead2b4e88d582` on September 1, 2026 PDT.
+
+## Visual capture provenance
+
+Four release screenshots were captured from the clean public URL in a WebMCP-capable
+browser host after the host enumerated exactly seven page-defined tools. Two fresh documents
+each completed the seven calls in order and recorded empty browser error and warning
+logs.
+
+| Asset | State | Exact image size |
+| --- | --- | --- |
+| [`verified-dashboard-1280x720.png`](design/verified-dashboard-1280x720.png) | `MARKET_RANKED/v3` | 1280×720 PNG |
+| [`evidence-influence-receipt-v4-1440x900.png`](design/evidence-influence-receipt-v4-1440x900.png) | `AUDITED/v4` | 1440×900 PNG |
+| [`verified-dashboard-1440x900.png`](design/verified-dashboard-1440x900.png) | `COMPARED/v6` | 1440×900 PNG |
+| [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 PNG |
+
+These captures document the rendered deployed surface for this runtime release; they
+do not replace the discovery, invocation, source, or fallback boundaries below.
 
 ## Proof matrix
 
@@ -15,10 +34,10 @@ The verified release was the public `main` build at commit `a6fa300`.
 | Public deployment | Proven | The HTTPS page returned `200` from GitHub Pages. The HTML referenced the deployed hashed JavaScript and CSS assets; each returned `200`. |
 | Public artifact content | Proven | The deployed JavaScript contains the seven canonical tool names and the `document.modelContext`/`registerTool` registration path. |
 | Registration contract and handlers | Simulated/unit-tested | The repository's automated suite passes 22 tests, including exactly-seven registration, lifecycle cleanup, schemas, state ordering, and shared handlers. These tests do not prove a deployed host can enumerate or call the tools. |
-| Native WebMCP discovery and invocation | Proven | Two independent fresh WebMCP-capable browser-host sessions, marked `?proof=session-1` and `?proof=session-2`, each visibly reported `WebMCP active` and `7 tools registered`. The host enumerated exactly the seven tools listed below, and both sessions invoked all seven in order. |
+| Native WebMCP discovery and invocation | Proven | Two independent fresh WebMCP-capable browser documents at the clean public URL each visibly reported `WebMCP active` and `7 tools registered`. The host enumerated exactly the seven tools listed below, and both documents invoked all seven in order. |
 | Unsupported-browser detection | Proven | A fresh Chrome tab displayed `WebMCP unavailable — manual fallback enabled` and exposed no WebMCP tab capability. |
 | Manual fallback | Proven | The complete sequence finished in Chrome: intent → auction → market ranking → influence receipt → clean-room policy → comparison → confirmed fictional staged selection. Final state was `SELECTION_STAGED`; the page stated that no purchase occurred. |
-| Console | Proven for these runs | Error and warning logs were empty in both native WebMCP sessions and the Chrome fallback run. This is not a claim about every browser host. |
+| Console | Proven for these runs | Error and warning logs were empty in both native WebMCP documents. The automated Chromium regression also asserts clean warning/error logs during the fallback flow. This is not a claim about every browser host. |
 | Network/assets | Partially proven | The observed deployed asset inventory consisted of one JavaScript file and one stylesheet. This is not a full HAR or universal no-network claim. |
 
 ## Native WebMCP proof
@@ -33,7 +52,7 @@ The host enumerated exactly these seven registered tools from the deployed origi
 6. `compare_market_to_clean_room`
 7. `stage_demo_selection`
 
-Session 1 called each tool individually in that order. The observed state/version
+Fresh document 1 called each tool individually in that order. The observed state/version
 sequence was:
 
 ```text
@@ -46,7 +65,7 @@ COMPARED/6
 SELECTION_STAGED/7
 ```
 
-Session 2 repeated the same seven calls in a second fresh document and produced the
+Fresh document 2 repeated the same seven calls in a second fresh document and produced the
 same states and versions. Its live tool description also exposed all seven input
 schemas from the deployed origin.
 
