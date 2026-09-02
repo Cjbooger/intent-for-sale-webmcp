@@ -562,3 +562,115 @@ select:focus-visible {
     padding-inline: 12px;
   }
 }
+
+/* Panel hierarchy and action affordances. */
+.recommendation-panel .panel-heading,
+.receipt-panel .panel-heading {
+  min-height: 52px;
+}
+
+.intent-panel .panel-heading,
+.policy-panel .panel-heading,
+.bidstream-panel .panel-heading,
+.selection-panel .panel-heading {
+  min-height: 46px;
+}
+
+.ledger-panel .panel-heading {
+  min-height: 42px;
+}
+
+.recommendation-panel,
+.receipt-panel {
+  border-color: color-mix(in srgb, var(--paper) 16%, var(--rule));
+}
+
+.sponsor-label,
+.disclosure-label,
+.notice-guard,
+.policy-state,
+.live-state,
+.offer-status span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 3px 6px;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.sponsor-label,
+.offer-status .paid {
+  color: var(--pink);
+}
+
+.disclosure-label,
+.notice-guard {
+  color: var(--amber);
+}
+
+.policy-state,
+.live-state.is-live,
+.offer-status .organic {
+  color: var(--teal);
+}
+
+.live-state.is-live i {
+  background: currentColor;
+}
+
+.outline-button,
+.confirm-button,
+.clean-room-button,
+.offer-actions button,
+.flow-bar button {
+  min-height: 30px;
+  border-radius: 0;
+  transition: color .15s ease, border-color .15s ease, background-color .15s ease;
+}
+
+.outline-button:hover,
+.outline-button:focus-visible {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.clean-room-button,
+.confirm-button {
+  border-color: var(--teal);
+}
+
+.clean-room-button:hover,
+.clean-room-button:focus-visible {
+  background: color-mix(in srgb, var(--teal) 12%, transparent);
+}
+
+.offer-actions button:hover,
+.offer-actions button:focus-visible,
+.flow-bar button:hover,
+.flow-bar button:focus-visible {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: color-mix(in srgb, var(--teal) 8%, transparent);
+}
+
+.text-button:hover,
+.text-button:focus-visible,
+.icon-button:hover,
+.icon-button:focus-visible {
+  color: var(--paper);
+}
+
+@media (max-width: 760px) {
+  .recommendation-panel .panel-heading,
+  .receipt-panel .panel-heading {
+    min-height: 48px;
+  }
+
+  .offer-status span {
+    min-height: 18px;
+    padding-inline: 4px;
+  }
+}
