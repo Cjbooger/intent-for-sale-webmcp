@@ -18,9 +18,12 @@ hashes were then revalidated against the public candidate.
 ## Visual capture provenance
 
 Four release screenshots were freshly captured from the clean public URL in a
-WebMCP-capable browser host. Their dimensions and SHA-256 hashes were checked locally
-before this evidence branch was committed. Two fresh browser documents also completed
-the seven native calls in order and recorded empty error and warning logs.
+WebMCP-capable browser host. Their dimensions and SHA-256 hashes were checked locally,
+then the public bytes at immutable evidence commit
+[`58511e01dd1fbfc1c3daf402601564000d8f9990`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/58511e01dd1fbfc1c3daf402601564000d8f9990)
+were fetched and matched all four repository files byte-for-byte. Two fresh browser
+documents also completed the seven native calls in order and recorded empty error and
+warning logs.
 
 | Asset | State | Exact image size | SHA-256 |
 | --- | --- | --- | --- |

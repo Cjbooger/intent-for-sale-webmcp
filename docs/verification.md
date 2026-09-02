@@ -86,11 +86,13 @@ the complete manual flow.
 ## Visual proof
 
 The repository includes release captures rendered from the final V2 deployed
-candidate above. Their exact dimensions and SHA-256 hashes were checked locally before
-the evidence branch was committed. Two fresh final deployed native sessions at the
-clean public URL each enumerated the same seven tools and invoked all seven in order;
-recorded browser error and warning logs were empty. Chrome fallback also completed the
-full manual flow.
+candidate above. Their exact dimensions and SHA-256 hashes were checked locally, then
+the public bytes at immutable evidence commit
+[`58511e01dd1fbfc1c3daf402601564000d8f9990`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/58511e01dd1fbfc1c3daf402601564000d8f9990)
+were fetched and matched all four repository files byte-for-byte. Two fresh final
+deployed native sessions at the clean public URL each enumerated the same seven tools
+and invoked all seven in order; recorded browser error and warning logs were empty.
+Chrome fallback also completed the full manual flow.
 
 | Asset | App state | Exact image size | SHA-256 | Visible proof |
 | --- | --- | --- | --- | --- |
