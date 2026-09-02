@@ -86,20 +86,19 @@ the complete manual flow.
 ## Visual proof
 
 The repository includes release captures rendered from the final V2 deployed
-candidate above. Their exact dimensions and SHA-256 hashes were checked locally, then
-the public bytes at immutable evidence commit
-[`58511e01dd1fbfc1c3daf402601564000d8f9990`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/58511e01dd1fbfc1c3daf402601564000d8f9990)
-were fetched and matched all four repository files byte-for-byte. Two fresh final
-deployed native sessions at the clean public URL each enumerated the same seven tools
-and invoked all seven in order; recorded browser error and warning logs were empty.
-Chrome fallback also completed the full manual flow.
+candidate above. The browser-produced JPEG encodings were normalized to true RGB PNG
+files without another lossy encode. Their file signatures, exact dimensions, and
+SHA-256 hashes were checked locally before this corrective evidence branch was
+committed. Two fresh final deployed native sessions at the clean public URL each
+enumerated the same seven tools and invoked all seven in order; recorded browser error
+and warning logs were empty. Chrome fallback also completed the full manual flow.
 
 | Asset | App state | Exact image size | SHA-256 | Visible proof |
 | --- | --- | --- | --- | --- |
-| [`verified-dashboard-1280x720.png`](design/verified-dashboard-1280x720.png) | `MARKET_RANKED/v3` | 1280×720 PNG | `5550f03591f692389589b2465d74b9cfe6f7bc8feeafdb110109d15683605193` | WebMCP active, five fictional bids, and OmniMotion at `84.6/#1`. |
-| [`evidence-influence-receipt-v4-1440x900.png`](design/evidence-influence-receipt-v4-1440x900.png) | `AUDITED/v4` | 1440×900 PNG | `5ede2df0d9d3f4e32535c6bb2d33cd8c8af394851845ed61ac25bd3700075c16` | `54.6 + 30.0 = 84.6`, market `#1`, clean-room `#5`, and simulated `$24` CPA. |
-| [`verified-dashboard-1440x900.png`](design/verified-dashboard-1440x900.png) | `COMPARED/v6` | 1440×900 PNG | `31a7fabd05e2f94105a433a630f290b6b027e25c659b51aa3b9b368cf052846d` | Sponsor policy blocked and KinoForge reversed from market `#4` to clean-room `#1` at `92.0`. |
-| [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 PNG | `87bfa3c40b311381b2ee07975ff4a369d19880a6802c23898ead94d374f9be91` | All seven ledger entries, the staged KinoForge result, and `NO PURCHASE`. |
+| [`verified-dashboard-1280x720.png`](design/verified-dashboard-1280x720.png) | `MARKET_RANKED/v3` | 1280×720 RGB PNG | `3e5cc38f14419efc5be74edbcdbf501f61d192fb478324171ecbb66c8809d78c` | WebMCP active, five fictional bids, and OmniMotion at `84.6/#1`. |
+| [`evidence-influence-receipt-v4-1440x900.png`](design/evidence-influence-receipt-v4-1440x900.png) | `AUDITED/v4` | 1440×900 RGB PNG | `ef1ec52e7d9264718dd0aca83ae26d3099c726f82a599a8de070f0bcc7e4f10d` | `54.6 + 30.0 = 84.6`, market `#1`, clean-room `#5`, and simulated `$24` CPA. |
+| [`verified-dashboard-1440x900.png`](design/verified-dashboard-1440x900.png) | `COMPARED/v6` | 1440×900 RGB PNG | `7d74964b75414b8979d67542a48d73f52f185538d951ad264ed8223baefdd491` | Sponsor policy blocked and KinoForge reversed from market `#4` to clean-room `#1` at `92.0`. |
+| [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 RGB PNG | `e03a54cf2ce3909bcfe9c0be404db30d792e7f9d56e12c3b3f0c549e509ded21` | All seven ledger entries, the staged KinoForge result, and `NO PURCHASE`. |
 
 The captures contain only deterministic fictional fixture data and no browser,
 account, user, or unrelated-project information. They document the rendered release
