@@ -13,6 +13,8 @@ Release evidence: [commercial market at 1280×720](docs/design/verified-dashboar
 [Influence Receipt at 1440×900](docs/design/evidence-influence-receipt-v4-1440x900.png),
 and [seven-tool ledger with the staged result](docs/design/evidence-ledger-and-selection-v7-1440x900.png).
 
+Read the concise [public submission narrative](docs/submission-narrative.md).
+
 Everything in the demo is synthetic. It cannot purchase, subscribe, transfer money,
 message a company, or contact an advertiser.
 
