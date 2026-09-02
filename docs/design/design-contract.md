@@ -1,6 +1,13 @@
 # INTENT//FOR SALE design contract
 
-Current reference: `verified-dashboard-1440x900.png`
+Current release references:
+
+- `verified-dashboard-1440x900.png` — primary clean-room comparison hero.
+- `verified-dashboard-1280x720.png` — commercial market first viewport.
+- `evidence-influence-receipt-v4-1440x900.png` — receipt arithmetic and disclosure.
+- `evidence-ledger-and-selection-v7-1440x900.png` — seven-tool ledger and staged result.
+
+These images are visual references, not substitutes for behavioral verification.
 
 ## Product surface
 
