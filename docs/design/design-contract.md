@@ -1,16 +1,17 @@
 # INTENT//FOR SALE design contract
 
-This document defines the institutional UI for the modern-minimal release candidate.
+This document defines the institutional UI for the deployed modern-minimal release.
 
-Historical release references to replace after deployed proof:
+Current deployed release references:
 
 - `verified-dashboard-1440x900.png` — primary clean-room comparison hero.
 - `verified-dashboard-1280x720.png` — commercial market first viewport.
 - `evidence-influence-receipt-v4-1440x900.png` — receipt arithmetic and disclosure.
 - `evidence-ledger-and-selection-v7-1440x900.png` — seven-tool ledger and staged result.
 
-These images document the previous frozen candidate. They are visual references only and
-must not be presented as evidence for the modern-minimal candidate.
+These images were freshly captured from deployed application candidate `509ea630` at
+their declared states and dimensions. Behavioral, native WebMCP, and byte-equality proof
+is recorded separately in [`../deployed-verification.md`](../deployed-verification.md).
 
 ## Product surface
 

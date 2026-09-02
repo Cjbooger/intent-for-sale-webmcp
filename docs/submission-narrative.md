@@ -77,8 +77,9 @@ The repository includes unit tests for the deterministic engine, state ordering,
 tool registration and cleanup, and invalid or out-of-order calls. The browser suite covers
 the complete manual flow, confirmation boundary, responsive layouts, reduced motion, and
 console cleanliness. The public verification record reports the current baseline as 22
-Vitest tests, eight Playwright tests, a passing TypeScript check and production build,
-and zero high-severity npm audit findings.
+Vitest tests, nine Playwright tests—including six release viewports and a 200%-zoom-
+equivalent reflow/keyboard gate—a passing TypeScript check and production build, and zero
+npm audit findings.
 
 Release screenshots document the rendered states:
 
