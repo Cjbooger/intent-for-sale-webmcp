@@ -3,6 +3,22 @@
 This document records reproducible checks for the public source package. It separates
 source-level proof from deployment- and browser-host behavior.
 
+## Pre-submission revalidation
+
+On September 2, 2026 at approximately 1:07 PM PDT, two new independent documents in
+ChatGPT/Codex's WebMCP-capable in-app browser each discovered the same seven tools from
+the public URL and completed the canonical sequence through `SELECTION_STAGED/7`.
+Both runs reproduced OmniMotion at `84.6` (`54.6 + 30.0`), the clean-room change to
+KinoForge at `92.0`, and `purchaseWillNotOccur: true`. A separate unconfirmed staging
+call correctly returned `CONFIRMATION_REQUIRED` without advancing state.
+
+The browser reported no warning or error logs. The completed state had no horizontal
+overflow at `1440x900` or `390x844`, retained the `WebMCP active` and `NO PURCHASE`
+disclosures, and rendered the four-step Influence Trace, receipt, rank reversal, and
+seven-entry ledger. Fresh public downloads of the HTML, CSS, and JavaScript matched
+the production hashes below byte-for-byte. All three returned HTTP `200`; observed
+download times were `0.054 s`, `0.049 s`, and `0.081 s` respectively in that probe.
+
 ## Automated checks
 
 Run from a clean checkout:
