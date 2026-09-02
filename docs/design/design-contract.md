@@ -1,42 +1,43 @@
 # INTENT//FOR SALE design contract
 
-Current release references:
+This document defines the institutional UI for the modern-minimal release candidate.
+
+Historical release references to replace after deployed proof:
 
 - `verified-dashboard-1440x900.png` — primary clean-room comparison hero.
 - `verified-dashboard-1280x720.png` — commercial market first viewport.
 - `evidence-influence-receipt-v4-1440x900.png` — receipt arithmetic and disclosure.
 - `evidence-ledger-and-selection-v7-1440x900.png` — seven-tool ledger and staged result.
 
-These images are visual references, not substitutes for behavioral verification.
+These images document the previous frozen candidate. They are visual references only and
+must not be presented as evidence for the modern-minimal candidate.
 
 ## Product surface
 
-Build a dense, code-native market-operations console rather than a landing page. The
-complete scenario must remain understandable without WebMCP: intent, auction,
+Build a quietly coercive institutional product rather than a terminal console or landing
+page. The complete scenario must remain understandable without WebMCP: intent, auction,
 commercial ranking, receipt, policy change, clean-room reversal, and staged selection.
 
 ## Layout
 
-- Compact status header: brand, session, WebMCP availability, commercial pressure.
-- Three-column work area: intent and policy; rankings; synthetic bidstream.
-- Full-width audit area: activity ledger, score waterfall, selection confirmation.
+- Quiet status header: brand, session, WebMCP availability, commercial pressure.
+- Decision Review is a dominant full-width first-class surface. Intent/policy is a quiet
+  context rail; receipt, ledger, bids, and staged selection are secondary audit evidence.
+- Influence Trace reads as one horizontal narrative rail, not four equal dashboard cards.
+- The fallback controls are compact and deliberately secondary.
 - At narrow widths, preserve reading order and stack panels without horizontal scroll.
 
 ## Visual tokens
 
-- Background: `#080b0b`
-- Surface: `#111615`
-- Raised surface: `#171d1b`
-- Rule: `#2b3531`
-- Text: `#f0f3e7`
-- Muted text: `#8e9a92`
-- Verified / clean room: `#baff38`
-- Commercial influence: `#ff4f98`
-- Disclosure: `#ffc85c`
-- Danger: `#ff766c`
-- Supporting signal: `#78e4d0`
-- UI copy uses a clean system sans; metadata and numbers use a system monospace.
-- One-pixel rules, compact spacing, minimal rounding, no decorative gradients or glow.
+- Canvas: `#121315`; surface: `#1a1b1e`; raised surface: `#232429`; rule: `#34353a`.
+- Text: warm off-white `#f4f0e9`; muted: `#a6a3a0`.
+- Interaction: restrained silver-blue `#bdc8d8`; paid influence surfaces: oxblood
+  `#974458`; accessible influence text: dusty rose `#d493a7`; disclosure: muted brass
+  `#ab9168`; danger surfaces: `#b65158`; accessible danger text: `#e58c92`.
+- Interface copy uses a sentence-case system sans. Monospace is reserved for IDs,
+  figures, and audit data.
+- Use negative space, low-contrast rules, modest 10px rounding, and no glow, gradients,
+  scanlines, or neon signaling.
 
 ## Data corrections from the visual concept
 

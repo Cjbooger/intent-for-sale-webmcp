@@ -60,6 +60,51 @@ async function readWebMcpStatusMetrics(page: Page) {
   });
 }
 
+async function readManualFallbackAccessibility(page: Page) {
+  return page.evaluate(() => {
+    const flowBar = document.querySelector<HTMLElement>(".flow-bar");
+    const dashboard = document.querySelector<HTMLElement>(".dashboard");
+    const receipt = document.querySelector<HTMLElement>(".receipt-panel");
+    const receiptSummary = document.querySelector<HTMLElement>(".receipt-summary");
+    const criticalSelectors = [
+      ".webmcp-status small",
+      ".trace-meta",
+      ".trace-detail",
+      ".flow-label span",
+      ".flow-label small",
+      ".flow-bar button",
+    ];
+    const criticalText = criticalSelectors
+      .map((selector) => document.querySelector<HTMLElement>(selector))
+      .filter((element): element is HTMLElement => Boolean(element))
+      .map((element) => ({
+        selector: element.className,
+        fontSize: Number.parseFloat(getComputedStyle(element).fontSize),
+        height: element.getBoundingClientRect().height,
+      }));
+    const flowRect = flowBar?.getBoundingClientRect();
+    const receiptRect = receipt?.getBoundingClientRect();
+    const summaryStyle = receiptSummary ? getComputedStyle(receiptSummary) : null;
+    const summaryRect = receiptSummary?.getBoundingClientRect();
+
+    return {
+      buttons: flowBar?.querySelectorAll("button").length ?? 0,
+      flowPosition: flowBar ? getComputedStyle(flowBar).position : null,
+      dashboardDirection: dashboard ? getComputedStyle(dashboard).flexDirection : null,
+      flowBelowReceipt: Boolean(flowRect && receiptRect && flowRect.top >= receiptRect.bottom - 1),
+      summaryVisible: Boolean(
+        summaryStyle
+          && summaryStyle.display !== "none"
+          && summaryStyle.visibility !== "hidden"
+          && summaryRect
+          && summaryRect.width > 0
+          && summaryRect.height > 0,
+      ),
+      criticalText,
+    };
+  });
+}
+
 for (const viewport of viewports) {
   test(`${viewport.name} keeps the manual flow and modal accessible`, async ({ page }) => {
     const consoleErrors: string[] = [];
@@ -93,6 +138,21 @@ for (const viewport of viewports) {
     expect(motion).toEqual({ pressureTransition: "0s", pressureAnimation: "none", copyTransition: "0s" });
 
     await runToCompared(page);
+    const fallbackAccessibility = await readManualFallbackAccessibility(page);
+    expect(fallbackAccessibility.buttons).toBe(6);
+    expect(fallbackAccessibility.flowPosition).not.toBe("fixed");
+    expect(fallbackAccessibility.flowBelowReceipt).toBe(true);
+    if (viewport.width <= 760) {
+      expect(fallbackAccessibility.dashboardDirection).toBe("column");
+    }
+    if (viewport.width >= 1100) {
+      expect(fallbackAccessibility.summaryVisible).toBe(true);
+    }
+    expect(
+      fallbackAccessibility.criticalText.every(({ fontSize, height }) => fontSize >= 11 && height >= 11),
+      JSON.stringify(fallbackAccessibility),
+    ).toBe(true);
+
     const comparedOverflow = await readOverflowMetrics(page);
     if (comparedOverflow) overflowSnapshots.push(`compared: ${comparedOverflow}`);
 
@@ -137,3 +197,83 @@ for (const viewport of viewports) {
     expect(consoleWarnings).toEqual([]);
   });
 }
+
+test("200% zoom-equivalent viewport reflows and keeps fallback controls keyboard reachable", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  await runToCompared(page);
+
+  const copySessionButton = page.getByRole("button", { name: "Copy session ID" });
+  const stageButton = page.getByRole("button", { name: "06 Stage KinoForge" });
+  await copySessionButton.click();
+  await expect(copySessionButton).toBeFocused();
+
+  // At 200% browser zoom, a 1440x900 display exposes a 720x450 CSS viewport.
+  // Resizing to those CSS dimensions exercises the same responsive reflow without
+  // relying on Chromium's nonstandard CSS zoom property.
+  await page.setViewportSize({ width: 720, height: 450 });
+  expect(await readOverflowMetrics(page)).toBeNull();
+
+  let reachedStageWithKeyboard = false;
+  for (let tab = 0; tab < 60; tab += 1) {
+    await page.keyboard.press("Tab");
+    if (await stageButton.evaluate((button) => button === document.activeElement)) {
+      reachedStageWithKeyboard = true;
+      break;
+    }
+  }
+  expect(reachedStageWithKeyboard).toBe(true);
+  await expect(stageButton).toBeFocused();
+
+  const zoomEquivalentMetrics = await page.evaluate(() => {
+    const flowBar = document.querySelector<HTMLElement>(".flow-bar");
+    const flowButtons = Array.from(flowBar?.querySelectorAll<HTMLButtonElement>("button") ?? []);
+    const receiptSummary = document.querySelector<HTMLElement>(".receipt-summary");
+    const active = document.activeElement as HTMLElement | null;
+    const activeRect = active?.getBoundingClientRect();
+    const criticalSelectors = [".webmcp-status small", ".trace-meta", ".trace-detail", ".flow-label span", ".flow-label small", ".flow-bar button"];
+    const criticalElements = criticalSelectors.flatMap((selector) => (
+      Array.from(document.querySelectorAll<HTMLElement>(selector))
+    ));
+
+    return {
+      dashboardDirection: getComputedStyle(document.querySelector<HTMLElement>(".dashboard")!).flexDirection,
+      buttonCount: flowButtons.length,
+      controlsUnclipped: flowButtons.every((button) => (
+        button.getBoundingClientRect().width > 0
+        && button.getBoundingClientRect().height >= 36
+        && button.scrollWidth <= button.clientWidth + 1
+        && button.scrollHeight <= button.clientHeight + 1
+      )),
+      criticalTextReadable: criticalElements.every((element) => (
+        Number.parseFloat(getComputedStyle(element).fontSize) >= 11
+        && element.getBoundingClientRect().width > 0
+        && element.getBoundingClientRect().height >= 11
+      )),
+      receiptReachable: Boolean(
+        receiptSummary
+        && receiptSummary.getBoundingClientRect().width > 0
+        && receiptSummary.getBoundingClientRect().height > 0,
+      ),
+      focusedControlVisible: Boolean(
+        activeRect
+        && activeRect.left >= 0
+        && activeRect.right <= window.innerWidth
+        && activeRect.top >= 0
+        && activeRect.bottom <= window.innerHeight,
+      ),
+      horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth,
+    };
+  });
+
+  expect(zoomEquivalentMetrics).toEqual({
+    dashboardDirection: "column",
+    buttonCount: 6,
+    controlsUnclipped: true,
+    criticalTextReadable: true,
+    receiptReachable: true,
+    focusedControlVisible: true,
+    horizontalOverflow: false,
+  });
+});
