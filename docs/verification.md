@@ -24,13 +24,13 @@ The automated suite covers:
 - strict input schemas and untrusted-content annotations;
 - the complete manual browser flow, including the no-purchase disclosure.
 
-Frozen application candidate (September 1, 2026 PDT):
+Final V2 application candidate (September 2, 2026 PDT):
 
-- Commit: [`ba134c14ccb7792fa9c3a4bc2b449f7e5ce5d2dd`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/ba134c14ccb7792fa9c3a4bc2b449f7e5ce5d2dd)
-- Git tree: `2cb7321645f33d2d12036337437420f704f097f1`
+- Commit: [`509ea6307b5916bf445b18abbb856c9f2a7ada6d`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/509ea6307b5916bf445b18abbb856c9f2a7ada6d)
+- Git tree: `10887fdcb402871febf47d13154f2e600161387d`
 - `package-lock.json` SHA-256: `cf54db52cf6044ea987f08f5c373468493afa58698d91dd4986c085c5ab5ab91`
-- [Exact-commit CI](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33587053601): passed.
-- [Exact-commit Pages deployment](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33587053626): passed.
+- [Exact-commit CI](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33640459929): passed.
+- [Exact-commit Pages deployment](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33640460133): passed.
 
 A fresh public clone resolved to that full commit and tree before dependencies were
 installed. From that clean clone:
@@ -38,22 +38,22 @@ installed. From that clean clone:
 - TypeScript project check: passed.
 - Vitest: 4 files, 22 tests passed.
 - Vite production build: passed.
-- Playwright Chromium: 8 tests passed, including the deterministic full flow, dialog
+- Playwright Chromium: 9 tests passed, including the deterministic full flow, dialog
   focus containment and restoration, reduced motion, clean console output, and zero
-  horizontal overflow across six release viewports.
+  horizontal overflow across six release viewports plus 200%-zoom-equivalent reflow.
 - npm dependency audit: 0 vulnerabilities.
 
 The production build and deployed Pages files were byte-identical:
 
 | File | SHA-256 |
 | --- | --- |
-| `dist/index.html` | `3664866d24c304b8d7c87e4c0ad724d4345a4f861dd0ce28c25f96ca3d27486d` |
-| `dist/assets/index-DROJcn7D.js` | `48132c1f691f931299fb376325ee38bd1ac1abc9bd571ee0349e22ee08b9420b` |
-| `dist/assets/index-DS8jCVYD.css` | `e6047501d1da397e9cec0b261e2a0b12259db29c986777bdb5b7495c22ec0510` |
+| `dist/index.html` | `bc60bf08d1991e575e9cd18c37c6223bd6e3a3984c9f001a3efa019803e30726` |
+| `dist/assets/index-fuLXQfjI.js` | `e74c54357fc7097604bcb35c3d79f2175fbdeef863c1f693df96aa44e1329c41` |
+| `dist/assets/index-Bxr4Y1pL.css` | `eb5b531caa3df120f71823fcc3cf9c86be4e82432a0ce546d8bf5beb470063e4` |
 
 The sorted three-line manifest produced by `find dist -type f -print | LC_ALL=C sort |
 xargs shasum -a 256` has SHA-256
-`7f47782f4cb0a70f4bb5b3bd2ea035d5ef4d736e2503e6b055d4bb0262cb8577`.
+`652853487473b93ee67e8e70def819d43378bf322cd5d7090054f8cf739a6f15`.
 
 ## Source-level assertions
 
@@ -85,20 +85,21 @@ the complete manual flow.
 
 ## Visual proof
 
-The repository includes release captures originally rendered from deployed app commit
-`b959728d8121803e239dd08a510ead2b4e88d582` on September 1, 2026 PDT. The frozen
-candidate above produces the same JavaScript, CSS, and HTML hashes, and the committed
-images were downloaded again from its immutable source URLs before their dimensions
-and hashes were checked. Two additional fresh documents at the clean public URL each
-enumerated the same seven tools and completed the seven calls in order; recorded
-browser error and warning logs were empty.
+The repository includes release captures rendered from the final V2 deployed
+candidate above. Their exact dimensions and SHA-256 hashes were checked locally, then
+the public bytes at immutable evidence commit
+[`58511e01dd1fbfc1c3daf402601564000d8f9990`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/58511e01dd1fbfc1c3daf402601564000d8f9990)
+were fetched and matched all four repository files byte-for-byte. Two fresh final
+deployed native sessions at the clean public URL each enumerated the same seven tools
+and invoked all seven in order; recorded browser error and warning logs were empty.
+Chrome fallback also completed the full manual flow.
 
 | Asset | App state | Exact image size | SHA-256 | Visible proof |
 | --- | --- | --- | --- | --- |
-| [`verified-dashboard-1280x720.png`](design/verified-dashboard-1280x720.png) | `MARKET_RANKED/v3` | 1280×720 PNG | `7af3920df277bde5d25fa3f60d5d48129f7e483b29765b6a10523eeecce65a54` | WebMCP active, five fictional bids, and OmniMotion at `84.6/#1`. |
-| [`evidence-influence-receipt-v4-1440x900.png`](design/evidence-influence-receipt-v4-1440x900.png) | `AUDITED/v4` | 1440×900 PNG | `557590176a2795052eb357d81c5225ce72333b58b4592e19fb65edf167d2cb27e` | `54.6 + 30.0 = 84.6`, market `#1`, clean-room `#5`, and simulated `$24` CPA. |
-| [`verified-dashboard-1440x900.png`](design/verified-dashboard-1440x900.png) | `COMPARED/v6` | 1440×900 PNG | `fab504fea0219dd1c0be0fd0595627450ae1b565fd12c840f870ef710d10117f` | Sponsor policy blocked and KinoForge reversed from market `#4` to clean-room `#1` at `92.0`. |
-| [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 PNG | `f6c3d89486f40fef0926f29fa6e76f01a61aeca9046bc9a4a891727f03cc6fd8` | All seven ledger entries, the staged KinoForge result, and `NO PURCHASE`. |
+| [`verified-dashboard-1280x720.png`](design/verified-dashboard-1280x720.png) | `MARKET_RANKED/v3` | 1280×720 PNG | `5550f03591f692389589b2465d74b9cfe6f7bc8feeafdb110109d15683605193` | WebMCP active, five fictional bids, and OmniMotion at `84.6/#1`. |
+| [`evidence-influence-receipt-v4-1440x900.png`](design/evidence-influence-receipt-v4-1440x900.png) | `AUDITED/v4` | 1440×900 PNG | `5ede2df0d9d3f4e32535c6bb2d33cd8c8af394851845ed61ac25bd3700075c16` | `54.6 + 30.0 = 84.6`, market `#1`, clean-room `#5`, and simulated `$24` CPA. |
+| [`verified-dashboard-1440x900.png`](design/verified-dashboard-1440x900.png) | `COMPARED/v6` | 1440×900 PNG | `31a7fabd05e2f94105a433a630f290b6b027e25c659b51aa3b9b368cf052846d` | Sponsor policy blocked and KinoForge reversed from market `#4` to clean-room `#1` at `92.0`. |
+| [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 PNG | `87bfa3c40b311381b2ee07975ff4a369d19880a6802c23898ead94d374f9be91` | All seven ledger entries, the staged KinoForge result, and `NO PURCHASE`. |
 
 The captures contain only deterministic fictional fixture data and no browser,
 account, user, or unrelated-project information. They document the rendered release

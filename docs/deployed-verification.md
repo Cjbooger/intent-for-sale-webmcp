@@ -1,33 +1,36 @@
 # Deployed verification
 
-This note records the final deployed HTTPS checks performed on September 1, 2026 PDT.
+This note records the final deployed HTTPS checks performed on September 2, 2026 PDT.
 It separates live native WebMCP proof, source and build proof, and the ordinary-browser
 fallback.
 
 Target: <https://cjbooger.github.io/intent-for-sale-webmcp/>
 
 Application candidate:
-[`ba134c14ccb7792fa9c3a4bc2b449f7e5ce5d2dd`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/ba134c14ccb7792fa9c3a4bc2b449f7e5ce5d2dd)
-(tree `2cb7321645f33d2d12036337437420f704f097f1`).
+[`509ea6307b5916bf445b18abbb856c9f2a7ada6d`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/509ea6307b5916bf445b18abbb856c9f2a7ada6d)
+(tree `10887fdcb402871febf47d13154f2e600161387d`).
 
-That exact commit passed [CI](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33587053601)
-and [Pages deployment](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33587053626).
+That exact commit passed [CI](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33640459929)
+and [Pages deployment](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33640460133).
 Native discovery and invocation, the manual fallback, public links, and deployed file
 hashes were then revalidated against the public candidate.
 
 ## Visual capture provenance
 
-Four release screenshots were originally captured from the clean public URL in a
-WebMCP-capable browser host. Their committed bytes were fetched again through immutable
-candidate URLs and matched the repository files exactly. Two new fresh browser documents
-then completed the seven native calls in order and recorded empty error and warning logs.
+Four release screenshots were freshly captured from the clean public URL in a
+WebMCP-capable browser host. Their dimensions and SHA-256 hashes were checked locally,
+then the public bytes at immutable evidence commit
+[`58511e01dd1fbfc1c3daf402601564000d8f9990`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/58511e01dd1fbfc1c3daf402601564000d8f9990)
+were fetched and matched all four repository files byte-for-byte. Two fresh browser
+documents also completed the seven native calls in order and recorded empty error and
+warning logs.
 
 | Asset | State | Exact image size | SHA-256 |
 | --- | --- | --- | --- |
-| [`verified-dashboard-1280x720.png`](design/verified-dashboard-1280x720.png) | `MARKET_RANKED/v3` | 1280×720 PNG | `7af3920df277bde5d25fa3f60d5d48129f7e483b29765b6a10523eeecce65a54` |
-| [`evidence-influence-receipt-v4-1440x900.png`](design/evidence-influence-receipt-v4-1440x900.png) | `AUDITED/v4` | 1440×900 PNG | `557590176a2795052eb357d81c5225ce72333b58b4592e19fb65edf167d2cb27e` |
-| [`verified-dashboard-1440x900.png`](design/verified-dashboard-1440x900.png) | `COMPARED/v6` | 1440×900 PNG | `fab504fea0219dd1c0be0fd0595627450ae1b565fd12c840f870ef710d10117f` |
-| [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 PNG | `f6c3d89486f40fef0926f29fa6e76f01a61aeca9046bc9a4a891727f03cc6fd8` |
+| [`verified-dashboard-1280x720.png`](design/verified-dashboard-1280x720.png) | `MARKET_RANKED/v3` | 1280×720 PNG | `5550f03591f692389589b2465d74b9cfe6f7bc8feeafdb110109d15683605193` |
+| [`evidence-influence-receipt-v4-1440x900.png`](design/evidence-influence-receipt-v4-1440x900.png) | `AUDITED/v4` | 1440×900 PNG | `5ede2df0d9d3f4e32535c6bb2d33cd8c8af394851845ed61ac25bd3700075c16` |
+| [`verified-dashboard-1440x900.png`](design/verified-dashboard-1440x900.png) | `COMPARED/v6` | 1440×900 PNG | `31a7fabd05e2f94105a433a630f290b6b027e25c659b51aa3b9b368cf052846d` |
+| [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 PNG | `87bfa3c40b311381b2ee07975ff4a369d19880a6802c23898ead94d374f9be91` |
 
 These captures document the rendered deployed surface for this runtime release; they
 do not replace the discovery, invocation, source, or fallback boundaries below.
@@ -40,8 +43,8 @@ do not replace the discovery, invocation, source, or fallback boundaries below.
 | Exact deployed artifact | Proven | The clean-clone production `index.html`, JavaScript, and CSS hashes matched the three public Pages files byte-for-byte. |
 | Public repository and license | Proven | Logged-out HTTP requests returned `200` for the public repository and the immutable candidate's MIT license. |
 | Registration contract and handlers | Simulated/unit-tested | The repository's automated suite passes 22 tests, including exactly-seven registration, lifecycle cleanup, schemas, state ordering, and shared handlers. These tests do not prove a deployed host can enumerate or call the tools. |
-| Native WebMCP discovery and invocation | Proven | Two independent fresh WebMCP-capable browser documents at the clean public URL each visibly reported `WebMCP active` and `7 tools registered`. The host enumerated exactly the seven tools listed below, and both documents invoked all seven in order. |
-| Unsupported-browser detection | Proven | A fresh Google Chrome `152.0.7977.65` tab displayed `WebMCP unavailable — manual fallback enabled` and exposed no WebMCP capability. |
+| Native WebMCP discovery and invocation | Proven | Two independent fresh WebMCP-capable browser documents at the clean public URL each visibly reported `WebMCP active` and `7 tools registered`. Each document enumerated exactly the seven tools listed below and invoked all states from `INTENT_READY/1` through `SELECTION_STAGED/7` in order. |
+| Unsupported-browser detection | Proven | A fresh Chrome tab displayed `WebMCP unavailable — manual fallback enabled` and exposed no WebMCP capability. |
 | Manual fallback | Proven | The complete sequence finished in Chrome: intent → auction → market ranking → influence receipt → clean-room policy → comparison → confirmed fictional staged selection. Final state was `SELECTION_STAGED`; the page stated that no purchase occurred. |
 | Console | Proven for these runs | Error and warning logs were empty in both native WebMCP documents and the fresh manual-fallback tab. The automated Chromium regression also asserts clean warning/error logs during the fallback flow. This is not a claim about every browser host. |
 | Network/assets | Bounded proof | The public HTML and its one hashed JavaScript and one hashed stylesheet matched the clean production build. This is not a full HAR or a universal no-network claim. |
@@ -50,18 +53,18 @@ do not replace the discovery, invocation, source, or fallback boundaries below.
 
 A fresh clone of the public repository resolved to the full candidate SHA and tree above.
 It then passed `npm ci`, the TypeScript check, 22 Vitest tests, the production build,
-eight Playwright tests, and `npm audit --audit-level=high` with zero vulnerabilities.
+nine Playwright tests, and `npm audit --audit-level=high` with zero vulnerabilities.
 
 | Production file | SHA-256 |
 | --- | --- |
-| `dist/index.html` | `3664866d24c304b8d7c87e4c0ad724d4345a4f861dd0ce28c25f96ca3d27486d` |
-| `dist/assets/index-DROJcn7D.js` | `48132c1f691f931299fb376325ee38bd1ac1abc9bd571ee0349e22ee08b9420b` |
-| `dist/assets/index-DS8jCVYD.css` | `e6047501d1da397e9cec0b261e2a0b12259db29c986777bdb5b7495c22ec0510` |
+| `dist/index.html` | `bc60bf08d1991e575e9cd18c37c6223bd6e3a3984c9f001a3efa019803e30726` |
+| `dist/assets/index-fuLXQfjI.js` | `e74c54357fc7097604bcb35c3d79f2175fbdeef863c1f693df96aa44e1329c41` |
+| `dist/assets/index-Bxr4Y1pL.css` | `eb5b531caa3df120f71823fcc3cf9c86be4e82432a0ce546d8bf5beb470063e4` |
 
 The `package-lock.json` SHA-256 is
 `cf54db52cf6044ea987f08f5c373468493afa58698d91dd4986c085c5ab5ab91`.
 The sorted three-line production manifest hash is
-`7f47782f4cb0a70f4bb5b3bd2ea035d5ef4d736e2503e6b055d4bb0262cb8577`.
+`652853487473b93ee67e8e70def819d43378bf322cd5d7090054f8cf739a6f15`.
 
 ## Native WebMCP proof
 
@@ -94,7 +97,7 @@ schemas from the deployed origin.
 
 Both sessions returned the expected observable facts:
 
-- Commercial market: OmniMotion Ultra at rank 1, score `84.6`.
+- Commercial market: OmniMotion Ultra at rank 1, score `84.6` (`54.6 + 30.0`).
 - Influence receipt: market rank `#1`, clean-room rank `#5`, and commercial
   contribution `30.0`.
 - Policy: sponsorship `block`, maximum sponsor weight `0`, inferred signals
