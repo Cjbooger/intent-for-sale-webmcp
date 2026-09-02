@@ -20,9 +20,11 @@ hashes were then revalidated against the public candidate.
 Four release screenshots were freshly captured from the clean public URL in a
 WebMCP-capable browser host. The browser-produced JPEG encodings were normalized to
 true RGB PNG files without another lossy encode. Their file signatures, dimensions,
-and SHA-256 hashes were checked locally before this corrective evidence branch was
-committed. Two fresh browser documents also completed the seven native calls in order
-and recorded empty error and warning logs.
+and SHA-256 hashes were checked locally. The public bytes at immutable evidence commit
+[`cce9dbb7b5e214f302d2ed6fbab2bdf970d8c3f2`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/cce9dbb7b5e214f302d2ed6fbab2bdf970d8c3f2)
+were then fetched, identified as RGB PNGs, and matched all four repository files
+byte-for-byte. Two fresh browser documents also completed the seven native calls in
+order and recorded empty error and warning logs.
 
 | Asset | State | Exact image size | SHA-256 |
 | --- | --- | --- | --- |

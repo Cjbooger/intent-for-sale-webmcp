@@ -88,8 +88,10 @@ the complete manual flow.
 The repository includes release captures rendered from the final V2 deployed
 candidate above. The browser-produced JPEG encodings were normalized to true RGB PNG
 files without another lossy encode. Their file signatures, exact dimensions, and
-SHA-256 hashes were checked locally before this corrective evidence branch was
-committed. Two fresh final deployed native sessions at the clean public URL each
+SHA-256 hashes were checked locally. The public bytes at immutable evidence commit
+[`cce9dbb7b5e214f302d2ed6fbab2bdf970d8c3f2`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/cce9dbb7b5e214f302d2ed6fbab2bdf970d8c3f2)
+were then fetched, identified as RGB PNGs, and matched all four repository files
+byte-for-byte. Two fresh final deployed native sessions at the clean public URL each
 enumerated the same seven tools and invoked all seven in order; recorded browser error
 and warning logs were empty. Chrome fallback also completed the full manual flow.
 
