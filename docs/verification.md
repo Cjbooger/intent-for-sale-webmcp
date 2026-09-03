@@ -105,25 +105,34 @@ the complete manual flow.
 
 ## Visual proof
 
-The repository includes release captures rendered from the final V2 deployed
-candidate above. The browser-produced JPEG encodings were normalized to true RGB PNG
-files without another lossy encode. Their file signatures, exact dimensions, and
-SHA-256 hashes were checked locally. The public bytes at immutable evidence commit
+The original release captures were rendered from the final V2 deployed candidate
+above. The browser-produced JPEG encodings were normalized to true RGB PNG files
+without another lossy encode. Their file signatures, exact dimensions, and SHA-256
+hashes were checked locally. The public bytes at immutable evidence commit
 [`cce9dbb7b5e214f302d2ed6fbab2bdf970d8c3f2`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/cce9dbb7b5e214f302d2ed6fbab2bdf970d8c3f2)
-were then fetched, identified as RGB PNGs, and matched all four repository files
-byte-for-byte. Two fresh final deployed native sessions at the clean public URL each
-enumerated the same seven tools and invoked all seven in order; recorded browser error
-and warning logs were empty. Chrome fallback also completed the full manual flow.
+matched that original four-image set byte-for-byte. Two fresh final deployed native
+sessions at the clean public URL each enumerated the same seven tools and invoked all
+seven in order; recorded browser error and warning logs were empty. Chrome fallback
+also completed the full manual flow.
+
+On September 3, an integrity review caught a `$250.00/month` value in the original
+receipt and ledger images that did not match the canonical `$80.00/month` scenario.
+Those two images were recaptured at 1440×900 from current application code with a
+controlled WebMCP registration harness. An independent native WebMCP-host replay of
+the seven calls showed the `$80.00/month` intent at both `AUDITED/v4` and
+`SELECTION_STAGED/v7`. The new image hashes below identify source files in this
+revision; deployed-byte proof for them must be repeated after deployment.
 
 | Asset | App state | Exact image size | SHA-256 | Visible proof |
 | --- | --- | --- | --- | --- |
 | [`verified-dashboard-1280x720.png`](design/verified-dashboard-1280x720.png) | `MARKET_RANKED/v3` | 1280×720 RGB PNG | `3e5cc38f14419efc5be74edbcdbf501f61d192fb478324171ecbb66c8809d78c` | WebMCP active, five fictional bids, and OmniMotion at `84.6/#1`. |
-| [`evidence-influence-receipt-v4-1440x900.png`](design/evidence-influence-receipt-v4-1440x900.png) | `AUDITED/v4` | 1440×900 RGB PNG | `ef1ec52e7d9264718dd0aca83ae26d3099c726f82a599a8de070f0bcc7e4f10d` | `54.6 + 30.0 = 84.6`, market `#1`, clean-room `#5`, and simulated `$24` CPA. |
+| [`evidence-influence-receipt-v4-1440x900.png`](design/evidence-influence-receipt-v4-1440x900.png) | `AUDITED/v4` | 1440×900 RGB PNG | `586287f02da755d632fe8ec6af236ac892359d9d656f80e09b2ca58273b9f3d3` | Canonical `$80.00/month` intent, `54.6 + 30.0 = 84.6`, market `#1`, clean-room `#5`, and simulated `$24` CPA. |
 | [`verified-dashboard-1440x900.png`](design/verified-dashboard-1440x900.png) | `COMPARED/v6` | 1440×900 RGB PNG | `7d74964b75414b8979d67542a48d73f52f185538d951ad264ed8223baefdd491` | Sponsor policy blocked and KinoForge reversed from market `#4` to clean-room `#1` at `92.0`. |
-| [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 RGB PNG | `e03a54cf2ce3909bcfe9c0be404db30d792e7f9d56e12c3b3f0c549e509ded21` | All seven ledger entries, the staged KinoForge result, and `NO PURCHASE`. |
+| [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 RGB PNG | `d64cb57d8bb7bcdfb018f3ec7baa9e6ece939452d0bda80475c975ee96f0c082` | Canonical `$80.00/month` intent, all seven ledger entries, the staged KinoForge result, and `NO PURCHASE`. |
 
 The captures contain only deterministic fictional fixture data and no browser,
-account, user, or unrelated-project information. They document the rendered release
-surface; they do not prove behavior in every WebMCP host. Regenerate them after any
-visual or behavioral deployment and bind final submission claims to the frozen
-release candidate.
+account, user, or unrelated-project information. The original set documents the
+rendered deployed release surface; the two replacements require a new deployed-byte
+check. They do not prove behavior in every WebMCP host. Regenerate them after any
+visual or behavioral deployment and bind final submission claims to the frozen release
+candidate.

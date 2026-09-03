@@ -17,24 +17,34 @@ hashes were then revalidated against the public candidate.
 
 ## Visual capture provenance
 
-Four release screenshots were freshly captured from the clean public URL in a
+The original four release screenshots were captured from the clean public URL in a
 WebMCP-capable browser host. The browser-produced JPEG encodings were normalized to
 true RGB PNG files without another lossy encode. Their file signatures, dimensions,
 and SHA-256 hashes were checked locally. The public bytes at immutable evidence commit
 [`cce9dbb7b5e214f302d2ed6fbab2bdf970d8c3f2`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/cce9dbb7b5e214f302d2ed6fbab2bdf970d8c3f2)
-were then fetched, identified as RGB PNGs, and matched all four repository files
-byte-for-byte. Two fresh browser documents also completed the seven native calls in
-order and recorded empty error and warning logs.
+matched that original four-image set byte-for-byte. Two fresh browser documents also
+completed the seven native calls in order and recorded empty error and warning logs.
+
+On September 3, an integrity review found that the original receipt and ledger images
+showed a `$250.00/month` budget inconsistent with the canonical `$80.00/month`
+scenario. Those two files were recaptured at 1440×900 from the current application
+code using a controlled WebMCP registration harness and the canonical input. A
+separate native WebMCP-host run completed all seven calls and displayed the same `$80`
+budget at `AUDITED/v4` and `SELECTION_STAGED/v7`. The replacement PNGs are source
+evidence for this revision; they are not a claim that those exact bytes were served by
+Pages before this revision is deployed and verified.
 
 | Asset | State | Exact image size | SHA-256 |
 | --- | --- | --- | --- |
 | [`verified-dashboard-1280x720.png`](design/verified-dashboard-1280x720.png) | `MARKET_RANKED/v3` | 1280×720 RGB PNG | `3e5cc38f14419efc5be74edbcdbf501f61d192fb478324171ecbb66c8809d78c` |
-| [`evidence-influence-receipt-v4-1440x900.png`](design/evidence-influence-receipt-v4-1440x900.png) | `AUDITED/v4` | 1440×900 RGB PNG | `ef1ec52e7d9264718dd0aca83ae26d3099c726f82a599a8de070f0bcc7e4f10d` |
+| [`evidence-influence-receipt-v4-1440x900.png`](design/evidence-influence-receipt-v4-1440x900.png) | `AUDITED/v4` | 1440×900 RGB PNG | `586287f02da755d632fe8ec6af236ac892359d9d656f80e09b2ca58273b9f3d3` |
 | [`verified-dashboard-1440x900.png`](design/verified-dashboard-1440x900.png) | `COMPARED/v6` | 1440×900 RGB PNG | `7d74964b75414b8979d67542a48d73f52f185538d951ad264ed8223baefdd491` |
-| [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 RGB PNG | `e03a54cf2ce3909bcfe9c0be404db30d792e7f9d56e12c3b3f0c549e509ded21` |
+| [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 RGB PNG | `d64cb57d8bb7bcdfb018f3ec7baa9e6ece939452d0bda80475c975ee96f0c082` |
 
-These captures document the rendered deployed surface for this runtime release; they
-do not replace the discovery, invocation, source, or fallback boundaries below.
+The original captures document the rendered deployed surface for this runtime release.
+The two replacement files document the same canonical source scenario pending their
+post-deployment byte check. Neither replaces the discovery, invocation, source, or
+fallback boundaries below.
 
 ## Proof matrix
 
