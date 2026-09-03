@@ -76,10 +76,11 @@ the local demo state.
 The repository includes unit tests for the deterministic engine, state ordering, schemas,
 tool registration and cleanup, and invalid or out-of-order calls. The browser suite covers
 the complete manual flow, confirmation boundary, responsive layouts, reduced motion, and
-console cleanliness. The public verification record reports the current baseline as 22
-Vitest tests, nine Playwright tests—including six release viewports and a 200%-zoom-
-equivalent reflow/keyboard gate—a passing TypeScript check and production build, and zero
-npm audit findings.
+console cleanliness. The current public repository passes 27 Vitest tests and nine
+Playwright tests—including six release viewports and a 200%-zoom-equivalent
+reflow/keyboard gate—plus the TypeScript check and production build, with zero npm audit
+findings. The frozen application candidate passed 22 of those unit tests; the later five
+handler-contract tests changed no production application files.
 
 Release screenshots document the rendered states:
 

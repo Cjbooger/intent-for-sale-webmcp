@@ -48,8 +48,8 @@ Final V2 application candidate (September 2, 2026 PDT):
 - [Exact-commit CI](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33640459929): passed.
 - [Exact-commit Pages deployment](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33640460133): passed.
 
-A fresh public clone resolved to that full commit and tree before dependencies were
-installed. From that clean clone:
+A fresh public checkout pinned to that full commit and tree was created before
+dependencies were installed. From that clean checkout:
 
 - TypeScript project check: passed.
 - Vitest: 4 files, 22 tests passed.
@@ -58,6 +58,10 @@ installed. From that clean clone:
   focus containment and restoration, reduced motion, clean console output, and zero
   horizontal overflow across six release viewports plus 200%-zoom-equivalent reflow.
 - npm dependency audit: 0 vulnerabilities.
+
+The current public documentation head adds one test-only file containing five WebMCP
+handler-contract tests, so its suite passes 27 Vitest tests. No production application
+file differs from the frozen candidate above.
 
 The production build and deployed Pages files were byte-identical:
 

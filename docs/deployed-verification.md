@@ -43,7 +43,7 @@ do not replace the discovery, invocation, source, or fallback boundaries below.
 | Public deployment | Proven | The HTTPS page returned `200` from GitHub Pages. The HTML referenced the deployed hashed JavaScript and CSS assets; each returned `200`. |
 | Exact deployed artifact | Proven | The clean-clone production `index.html`, JavaScript, and CSS hashes matched the three public Pages files byte-for-byte. |
 | Public repository and license | Proven | Logged-out HTTP requests returned `200` for the public repository and the immutable candidate's MIT license. |
-| Registration contract and handlers | Simulated/unit-tested | The repository's automated suite passes 22 tests, including exactly-seven registration, lifecycle cleanup, schemas, state ordering, and shared handlers. These tests do not prove a deployed host can enumerate or call the tools. |
+| Registration contract and handlers | Simulated/unit-tested | The frozen application candidate passes 22 tests. The current documentation head adds five handler-contract tests and passes 27 total, with no production app changes. Coverage includes exactly-seven registration, lifecycle cleanup, schemas, state ordering, and shared handlers. These tests do not prove a deployed host can enumerate or call the tools. |
 | Native WebMCP discovery and invocation | Proven | Two independent fresh WebMCP-capable browser documents at the clean public URL each visibly reported `WebMCP active` and `7 tools registered`. Each document enumerated exactly the seven tools listed below and invoked all states from `INTENT_READY/1` through `SELECTION_STAGED/7` in order. |
 | Unsupported-browser detection | Proven | A fresh Chrome tab displayed `WebMCP unavailable — manual fallback enabled` and exposed no WebMCP capability. |
 | Manual fallback | Proven | The complete sequence finished in Chrome: intent → auction → market ranking → influence receipt → clean-room policy → comparison → confirmed fictional staged selection. Final state was `SELECTION_STAGED`; the page stated that no purchase occurred. |
@@ -52,9 +52,11 @@ do not replace the discovery, invocation, source, or fallback boundaries below.
 
 ## Reproducible candidate
 
-A fresh clone of the public repository resolved to the full candidate SHA and tree above.
-It then passed `npm ci`, the TypeScript check, 22 Vitest tests, the production build,
-nine Playwright tests, and `npm audit --audit-level=high` with zero vulnerabilities.
+A fresh public checkout pinned to the full candidate SHA and tree above passed `npm ci`,
+the TypeScript check, 22 Vitest tests, the production build, nine Playwright tests, and
+`npm audit --audit-level=high` with zero vulnerabilities. The current public
+documentation head separately passes 27 Vitest tests; its five additional tests do not
+change the production application.
 
 | Production file | SHA-256 |
 | --- | --- |
