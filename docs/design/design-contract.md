@@ -13,7 +13,7 @@ The two dashboard images were freshly captured from deployed application candida
 `509ea630`. The receipt and ledger images were recaptured from the same current
 application code with the canonical `$80.00/month` input after an integrity review found
 stale `$250.00/month` evidence in their originals. Native WebMCP replay is recorded, and
-post-deploy byte-equality proof will be recorded after this revision deploys, in
+the corrected files' immutable public-repository byte equality is recorded in
 [`../deployed-verification.md`](../deployed-verification.md).
 
 ## Product surface

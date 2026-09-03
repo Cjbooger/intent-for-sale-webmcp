@@ -1,6 +1,6 @@
 # Deployed verification
 
-This note records the final deployed HTTPS checks performed on September 2, 2026 PDT.
+This note records the final deployed HTTPS checks performed on September 2–3, 2026 PDT.
 It separates live native WebMCP proof, source and build proof, and the ordinary-browser
 fallback.
 
@@ -31,8 +31,11 @@ scenario. Those two files were recaptured at 1440×900 from the current applicat
 code using a controlled WebMCP registration harness and the canonical input. A
 separate native WebMCP-host run completed all seven calls and displayed the same `$80`
 budget at `AUDITED/v4` and `SELECTION_STAGED/v7`. The replacement PNGs are source
-evidence for this revision; they are not a claim that those exact bytes were served by
-Pages before this revision is deployed and verified.
+evidence for this revision. After PR #18 merged, both files were fetched from immutable
+public-repository commit
+[`11aa16f4d56fb5b8c8248aa6b79a1b670fe1c862`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/11aa16f4d56fb5b8c8248aa6b79a1b670fe1c862)
+and matched the local release files byte-for-byte. These documentation images are public
+repository assets; they are not part of the GitHub Pages `dist` artifact.
 
 | Asset | State | Exact image size | SHA-256 |
 | --- | --- | --- | --- |
@@ -42,9 +45,9 @@ Pages before this revision is deployed and verified.
 | [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 RGB PNG | `d64cb57d8bb7bcdfb018f3ec7baa9e6ece939452d0bda80475c975ee96f0c082` |
 
 The original captures document the rendered deployed surface for this runtime release.
-The two replacement files document the same canonical source scenario pending their
-post-deployment byte check. Neither replaces the discovery, invocation, source, or
-fallback boundaries below.
+The two replacement files document the same canonical source scenario and have an
+immutable public-repository byte match. Neither replaces the discovery, invocation,
+source, or fallback boundaries below.
 
 ## Proof matrix
 
@@ -53,7 +56,7 @@ fallback boundaries below.
 | Public deployment | Proven | The HTTPS page returned `200` from GitHub Pages. The HTML referenced the deployed hashed JavaScript and CSS assets; each returned `200`. |
 | Exact deployed artifact | Proven | The clean-clone production `index.html`, JavaScript, and CSS hashes matched the three public Pages files byte-for-byte. |
 | Public repository and license | Proven | Logged-out HTTP requests returned `200` for the public repository and the immutable candidate's MIT license. |
-| Registration contract and handlers | Simulated/unit-tested | The frozen application candidate passes 22 tests. The current documentation head adds five handler-contract tests and passes 27 total, with no production app changes. Coverage includes exactly-seven registration, lifecycle cleanup, schemas, state ordering, and shared handlers. These tests do not prove a deployed host can enumerate or call the tools. |
+| Registration contract and handlers | Simulated/unit-tested | The frozen application candidate passes 22 tests. The current documentation head adds five handler-contract tests and one browser budget-regression test, passing 27 unit tests and 10 Playwright tests with no production app changes. Coverage includes exactly-seven registration, lifecycle cleanup, schemas, state ordering, shared handlers, and preservation of the canonical `$80` intent through `AUDITED/v4` and `SELECTION_STAGED/v7`. These tests do not prove a deployed host can enumerate or call the tools. |
 | Native WebMCP discovery and invocation | Proven | Two independent fresh WebMCP-capable browser documents at the clean public URL each visibly reported `WebMCP active` and `7 tools registered`. Each document enumerated exactly the seven tools listed below and invoked all states from `INTENT_READY/1` through `SELECTION_STAGED/7` in order. |
 | Unsupported-browser detection | Proven | A fresh Chrome tab displayed `WebMCP unavailable — manual fallback enabled` and exposed no WebMCP capability. |
 | Manual fallback | Proven | The complete sequence finished in Chrome: intent → auction → market ranking → influence receipt → clean-room policy → comparison → confirmed fictional staged selection. Final state was `SELECTION_STAGED`; the page stated that no purchase occurred. |
@@ -65,8 +68,11 @@ fallback boundaries below.
 A fresh public checkout pinned to the full candidate SHA and tree above passed `npm ci`,
 the TypeScript check, 22 Vitest tests, the production build, nine Playwright tests, and
 `npm audit --audit-level=high` with zero vulnerabilities. The current public
-documentation head separately passes 27 Vitest tests; its five additional tests do not
-change the production application.
+evidence commit `11aa16f` separately passes 27 Vitest tests and 10 Playwright tests; its
+five additional unit tests and one additional browser regression do not change the
+production application. Its [CI](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33784865512)
+and [Pages deployment](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33784865679)
+passed after PR #18 merged.
 
 | Production file | SHA-256 |
 | --- | --- |
