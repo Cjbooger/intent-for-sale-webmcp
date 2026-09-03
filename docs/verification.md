@@ -59,9 +59,13 @@ dependencies were installed. From that clean checkout:
   horizontal overflow across six release viewports plus 200%-zoom-equivalent reflow.
 - npm dependency audit: 0 vulnerabilities.
 
-The current public documentation head adds one test-only file containing five WebMCP
-handler-contract tests, so its suite passes 27 Vitest tests. No production application
-file differs from the frozen candidate above.
+Public evidence commit `11aa16f` adds five WebMCP handler-contract tests plus one
+Playwright regression that preserves the canonical `$80` intent through `AUDITED/v4`
+and `SELECTION_STAGED/v7`. Its suites pass 27 Vitest tests and 10 Playwright tests. No
+production application file differs from the frozen candidate above. Its
+[CI](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33784865512) and
+[Pages deployment](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33784865679)
+passed after PR #18 merged.
 
 The production build and deployed Pages files were byte-identical:
 
@@ -120,8 +124,11 @@ receipt and ledger images that did not match the canonical `$80.00/month` scenar
 Those two images were recaptured at 1440×900 from current application code with a
 controlled WebMCP registration harness. An independent native WebMCP-host replay of
 the seven calls showed the `$80.00/month` intent at both `AUDITED/v4` and
-`SELECTION_STAGED/v7`. The new image hashes below identify source files in this
-revision; deployed-byte proof for them must be repeated after deployment.
+`SELECTION_STAGED/v7`. After PR #18 merged, both replacements were fetched from
+immutable public-repository commit
+[`11aa16f4d56fb5b8c8248aa6b79a1b670fe1c862`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/11aa16f4d56fb5b8c8248aa6b79a1b670fe1c862)
+and matched the local files byte-for-byte. They are repository documentation assets,
+not files in the GitHub Pages `dist` artifact.
 
 | Asset | App state | Exact image size | SHA-256 | Visible proof |
 | --- | --- | --- | --- | --- |
@@ -132,7 +139,7 @@ revision; deployed-byte proof for them must be repeated after deployment.
 
 The captures contain only deterministic fictional fixture data and no browser,
 account, user, or unrelated-project information. The original set documents the
-rendered deployed release surface; the two replacements require a new deployed-byte
-check. They do not prove behavior in every WebMCP host. Regenerate them after any
-visual or behavioral deployment and bind final submission claims to the frozen release
-candidate.
+rendered deployed release surface; the two replacements have an immutable byte match in
+the public repository. They do not prove behavior in every WebMCP host. Regenerate them
+after any visual or behavioral deployment and bind final submission claims to the frozen
+release candidate.
