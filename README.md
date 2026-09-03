@@ -20,8 +20,8 @@ message a company, or contact an advertiser.
 
 ## What the demo proves
 
-The fixed scenario asks an agent to select an AI video-generation platform under an
-$80 monthly budget. It then makes the influence path visible:
+The fixed scenario asks an agent to select an AI video-generation platform at or under
+an $80 monthly budget. It then makes the influence path visible:
 
 1. Create a structured intent session.
 2. Run a deterministic fictional advertiser auction.

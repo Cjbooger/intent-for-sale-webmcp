@@ -17,8 +17,8 @@ paid factor.
 
 ## Solution and impact
 
-The fixed scenario asks for an AI video-generation platform under an $80 monthly budget,
-with five explicit requirements. Five fictional offers enter a deterministic auction.
+The fixed scenario asks for an AI video-generation platform at or under an $80 monthly
+budget, with five explicit requirements. Five fictional offers enter a deterministic auction.
 OmniMotion Ultra reaches commercial rank #1 with a score of `84.6`; its user-fit
 contribution is `54.6` and its simulated sponsor contribution is `30.0`, associated with
 a fictional `$24` CPA. KinoForge Studio has the strongest sponsor-free fit at `92.0`,
