@@ -70,6 +70,26 @@ test("manual fallback completes deterministically twice without horizontal overf
   expect(consoleErrors).toEqual([]);
 });
 
+test("canonical $80 budget remains visible through receipt and staged selection", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  await page.getByRole("button", { name: "01 Create intent" }).click();
+  await page.getByRole("button", { name: "02 Run auction" }).click();
+  await page.getByRole("button", { name: "03 Rank market" }).click();
+  await page.getByRole("button", { name: "04 Inspect receipt" }).click();
+
+  const intentManifest = page.locator(".intent-panel .manifest-list");
+  await expect(page.getByText("State AUDITED", { exact: true })).toBeVisible();
+  await expect(intentManifest.getByText("$80.00 / month", { exact: true })).toBeVisible();
+
+  await page.getByRole("button", { name: "05 Clean room" }).click();
+  await page.getByRole("button", { name: "06 Stage KinoForge" }).click();
+  await page.getByRole("button", { name: "Confirm selection" }).click();
+
+  await expect(page.getByText("State SELECTION_STAGED", { exact: true })).toBeVisible();
+  await expect(intentManifest.getByText("$80.00 / month", { exact: true })).toBeVisible();
+});
+
 test("influence trace never pairs the market winner with a nonwinner receipt", async ({
   page,
 }) => {
