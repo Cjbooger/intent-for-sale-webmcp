@@ -9,3 +9,13 @@ test-results/
 !.env.example
 .DS_Store
 npm-debug.log*
+
+# Local planning, submission staging, and design-source material
+/submission-artifacts/
+/.devpost-hackathon-state.json
+/devpost-submission.md
+/intent-for-sale-webmcp-spec.md
+/webmcp-challenge-execution-plan.md
+/docs/foundation-*.md
+/docs/*-visual-direction.md
+/docs/design/*-concept.png
