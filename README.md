@@ -2,18 +2,19 @@
 
 **The agent becomes the ad impression.**
 
+**[Launch the live demo](https://cjbooger.github.io/intent-for-sale-webmcp/)** ·
+[Read the submission narrative](docs/submission-narrative.md)
+
 INTENT//FOR SALE is a fictional [WebMCP Challenge](https://openai.com/webmcp-challenge/)
 prototype about commercial influence in agent recommendations. Synthetic advertisers
 bid for rank, the user can inspect an Influence Receipt, and a clean-room policy pass
 shows what the recommendation would have been without sponsorship.
 
-![Verified dashboard showing a commercial ranking beside a clean-room result](docs/design/verified-dashboard-1440x900.png)
+![Current interface showing the commercial ranking beside the clean-room result](docs/design/current-interface-1440x900.png)
 
 Release evidence: [commercial market at 1280×720](docs/design/verified-dashboard-1280x720.png),
 [Influence Receipt at 1440×900](docs/design/evidence-influence-receipt-v4-1440x900.png),
 and [seven-tool ledger with the staged result](docs/design/evidence-ledger-and-selection-v7-1440x900.png).
-
-Read the concise [public submission narrative](docs/submission-narrative.md).
 
 Everything in the demo is synthetic. It cannot purchase, subscribe, transfer money,
 message a company, or contact an advertiser.
