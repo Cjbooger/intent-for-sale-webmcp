@@ -113,3 +113,37 @@ test("influence trace never pairs the market winner with a nonwinner receipt", a
   await expect(trace.getByText("+18.8", { exact: true })).toHaveCount(0);
   await expect(page.locator(".receipt-panel").getByText("PromptCloud Infinite", { exact: true })).toBeVisible();
 });
+
+test("agent test prompts remain readable without horizontal overflow", async ({ page }) => {
+  for (const viewport of [
+    { width: 1440, height: 900 },
+    { width: 1100, height: 900 },
+    { width: 760, height: 900 },
+    { width: 360, height: 800 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+    const prompts = page.locator("details.agent-prompts");
+    const summary = prompts.locator("summary");
+    await summary.focus();
+    await page.keyboard.press("Enter");
+
+    await expect(prompts).toHaveAttribute("open", "");
+    await expect(page.getByRole("link", { name: "Devpost entry" })).toHaveAttribute(
+      "href",
+      "https://devpost.com/software/intent-for-sale",
+    );
+    await expect(page.getByRole("link", { name: "Demo video" })).toHaveAttribute(
+      "href",
+      "https://youtu.be/3qy5PAYSi0E",
+    );
+    await expect(page.getByRole("heading", { name: "Get a recommendation" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Audit the influence" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Verify native WebMCP" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Test the confirmation boundary" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Copy prompt" })).toHaveCount(4);
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth),
+    ).toBe(false);
+  }
+});
