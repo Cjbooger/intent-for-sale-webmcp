@@ -3,7 +3,41 @@
 This document records reproducible checks for the public source package. It separates
 source-level proof from deployment- and browser-host behavior.
 
-## Pre-submission revalidation
+## Current deployed candidate
+
+PR #22 merged on September 3, 2026 PDT as
+[`b229e9157751886b053fdbe29d9b6b8bffeda060`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/b229e9157751886b053fdbe29d9b6b8bffeda060)
+(tree `99a8aa1af993671e43276c307b16926f2b5d22f2`). It adds the copy-ready prompt panel,
+public Devpost and video links, and accessible clipboard feedback. The seven WebMCP tool
+definitions and deterministic ranking fixture are unchanged.
+
+The merged commit passed [CI](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33831354411)
+and [Pages deployment](https://github.com/Cjbooger/intent-for-sale-webmcp/actions/runs/33831354403).
+A clean local gate passed TypeScript checking, 30 Vitest tests, the production build,
+11 Playwright tests, and `npm audit --audit-level=high` with zero vulnerabilities.
+
+Two fresh WebMCP-capable browser documents loaded the deployed commit. Each discovered
+exactly seven tools and called the first six in order, reaching `COMPARED/6` with
+OmniMotion Ultra at `84.6` in the commercial market and KinoForge Studio at `92.0` in
+the clean room. Each unconfirmed `stage_demo_selection` call returned
+`CONFIRMATION_REQUIRED` and remained at `COMPARED/6`. The prompt panel exposed all four
+examples and the correct Devpost and video URLs. Both documents recorded no browser
+warnings or errors.
+
+The local production files matched the deployed Pages files byte-for-byte:
+
+| File | SHA-256 |
+| --- | --- |
+| `dist/index.html` | `40a1d05b8634ec9eddd84b167d607d0c85c7a24b2f8476ce7da520887741bcf8` |
+| `dist/assets/index-C01574OC.js` | `c8dd151295d420fbfcfe4972bc02604f33cc1901b5905d853feab2487b42ed32` |
+| `dist/assets/index-CCq63vD4.css` | `658f10f8fe66e729d99d15b9922a86fb9d35927ea834ec2c372fbfc80be2ec15` |
+
+The `package-lock.json` SHA-256 is
+`cf54db52cf6044ea987f08f5c373468493afa58698d91dd4986c085c5ab5ab91`.
+The sorted three-line production manifest hash is
+`e41d9082e02a52e0964afe1141b10eea363f0e8d10ed102b0944b315bc8f0734`.
+
+## Historical September 2 revalidation
 
 On September 2, 2026 at approximately 1:07 PM PDT, two new independent documents in
 ChatGPT/Codex's WebMCP-capable in-app browser each discovered the same seven tools from
@@ -38,9 +72,13 @@ The automated suite covers:
 - state ordering, invalid inputs, session guards, and reset behavior;
 - exactly seven WebMCP tool registrations and lifecycle cleanup;
 - strict input schemas and untrusted-content annotations;
-- the complete manual browser flow, including the no-purchase disclosure.
+- the complete manual browser flow, including the no-purchase disclosure;
+- four copy-ready prompt paths, clipboard feedback, and prompt layouts at the exact
+  responsive breakpoints.
 
-Final V2 application candidate (September 2, 2026 PDT):
+### Historical V2 application candidate
+
+The September 2, 2026 V2 candidate was:
 
 - Commit: [`509ea6307b5916bf445b18abbb856c9f2a7ada6d`](https://github.com/Cjbooger/intent-for-sale-webmcp/commit/509ea6307b5916bf445b18abbb856c9f2a7ada6d)
 - Git tree: `10887fdcb402871febf47d13154f2e600161387d`
@@ -59,7 +97,7 @@ dependencies were installed. From that clean checkout:
   horizontal overflow across six release viewports plus 200%-zoom-equivalent reflow.
 - npm dependency audit: 0 vulnerabilities.
 
-Public evidence commit `11aa16f` adds five WebMCP handler-contract tests plus one
+Historical public evidence commit `11aa16f` adds five WebMCP handler-contract tests plus one
 Playwright regression that preserves the canonical `$80` intent through `AUDITED/v4`
 and `SELECTION_STAGED/v7`. Its suites pass 27 Vitest tests and 10 Playwright tests. No
 production application file differs from the frozen candidate above. Its
@@ -109,6 +147,16 @@ the complete manual flow.
 
 ## Visual proof
 
+The current README hero was captured at 1440×900 from deployed candidate `b229e915`
+after the manual flow reached `COMPARED/6`. A controlled registration stub exposed
+the page's real WebMCP status path during capture; the separate browser-host checks above
+provide native invocation proof. The image visibly includes the new prompt strip,
+Devpost link, video link, commercial ranking, clean-room ranking, and Influence Trace.
+
+| Current asset | App state | Exact image size | SHA-256 |
+| --- | --- | --- | --- |
+| [`current-interface-1440x900.png`](design/current-interface-1440x900.png) | `COMPARED/v6` | 1440×900 RGB PNG | `fc10bf13db2bb0ebd0b6887d79985447065212532d0ba62285001c04fdb872ba` |
+
 The original release captures were rendered from the final V2 deployed candidate
 above. The browser-produced JPEG encodings were normalized to true RGB PNG files
 without another lossy encode. Their file signatures, exact dimensions, and SHA-256
@@ -122,7 +170,7 @@ also completed the full manual flow.
 On September 3, an integrity review caught a `$250.00/month` value in the original
 receipt and ledger images that did not match the canonical `$80.00/month` scenario.
 Those two images were recaptured at 1440×900 from current application code with a
-controlled WebMCP registration harness. An independent native WebMCP-host replay of
+controlled WebMCP registration stub. An independent native WebMCP-host replay of
 the seven calls showed the `$80.00/month` intent at both `AUDITED/v4` and
 `SELECTION_STAGED/v7`. After PR #18 merged, both replacements were fetched from
 immutable public-repository commit
@@ -138,8 +186,6 @@ not files in the GitHub Pages `dist` artifact.
 | [`evidence-ledger-and-selection-v7-1440x900.png`](design/evidence-ledger-and-selection-v7-1440x900.png) | `SELECTION_STAGED/v7` | 1440×900 RGB PNG | `d64cb57d8bb7bcdfb018f3ec7baa9e6ece939452d0bda80475c975ee96f0c082` | Canonical `$80.00/month` intent, all seven ledger entries, the staged KinoForge result, and `NO PURCHASE`. |
 
 The captures contain only deterministic fictional fixture data and no browser,
-account, user, or unrelated-project information. The original set documents the
-rendered deployed release surface; the two replacements have an immutable byte match in
-the public repository. They do not prove behavior in every WebMCP host. Regenerate them
-after any visual or behavioral deployment and bind final submission claims to the frozen
-release candidate.
+account, user, or unrelated-project information. The four V2 files remain historical
+evidence for the unchanged decision flow; the current README hero documents the prompt
+and resource-link addition. The images do not prove behavior in every WebMCP host.

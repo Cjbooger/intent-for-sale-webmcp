@@ -59,6 +59,14 @@ human click, identity, consent, or authorization. That boundary is acceptable he
 because the result is fictional, local, reversible, ephemeral, and incapable of an
 external side effect.
 
+## Try it with an agent
+
+The live page includes four copy-ready prompts for an ordinary recommendation, an
+influence audit, a native WebMCP check, and the confirmation boundary. The first request
+does not mention advertising. The follow-up asks the agent to disclose the paid
+contribution, block sponsorship, and compare the ranking again. The page does not treat
+manual clicks or fallback handlers as native WebMCP proof.
+
 ## Implementation
 
 The project is a static Vite, React, and TypeScript client. Zustand holds ephemeral
@@ -74,17 +82,16 @@ the local demo state.
 ## Testing and evidence
 
 The repository includes unit tests for the deterministic engine, state ordering, schemas,
-tool registration and cleanup, and invalid or out-of-order calls. The browser suite covers
-the complete manual flow, confirmation boundary, responsive layouts, reduced motion, and
-console cleanliness. Public evidence commit `11aa16f` passes 27 Vitest tests and 10
-Playwright tests—including six release viewports, a 200%-zoom-equivalent reflow/keyboard
-gate, and preservation of the canonical `$80` intent through the audited and staged
-states—plus the TypeScript check and production build, with zero npm audit findings. The
-frozen application candidate passed 22 of those unit tests; the later five handler-
-contract tests and one browser regression changed no production application files.
+tool registration and cleanup, prompt copy feedback, and invalid or out-of-order calls.
+The browser suite covers the complete manual flow, confirmation boundary, responsive
+layouts, expanded prompts at the exact breakpoints, reduced motion, and console
+cleanliness. Candidate `b229e915` passes 30 Vitest tests and 11 Playwright tests, plus
+TypeScript checking and the production build, with zero npm audit findings.
 
-Release screenshots document the rendered states:
+Release screenshots document the rendered states. The first image shows the current
+prompt and public-link strip; the remaining four preserve the unchanged core flow:
 
+- [Current interface](design/current-interface-1440x900.png)
 - [Commercial ranking](design/verified-dashboard-1280x720.png)
 - [Influence Receipt](design/evidence-influence-receipt-v4-1440x900.png)
 - [Market versus clean room](design/verified-dashboard-1440x900.png)
@@ -93,6 +100,8 @@ Release screenshots document the rendered states:
 ## Demo, repository, and license
 
 - [Live demo](https://cjbooger.github.io/intent-for-sale-webmcp/)
+- [Devpost entry](https://devpost.com/software/intent-for-sale)
+- [Demo video](https://youtu.be/3qy5PAYSi0E)
 - [Public source repository](https://github.com/Cjbooger/intent-for-sale-webmcp)
 - [MIT License](../LICENSE)
 

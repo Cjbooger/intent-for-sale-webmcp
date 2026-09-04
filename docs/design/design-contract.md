@@ -4,17 +4,18 @@ This document defines the institutional UI for the deployed modern-minimal relea
 
 Current deployed release references:
 
+- `current-interface-1440x900.png` — current comparison hero with the prompt and
+  public-link strip.
 - `verified-dashboard-1440x900.png` — primary clean-room comparison hero.
 - `verified-dashboard-1280x720.png` — commercial market first viewport.
 - `evidence-influence-receipt-v4-1440x900.png` — receipt arithmetic and disclosure.
 - `evidence-ledger-and-selection-v7-1440x900.png` — seven-tool ledger and staged result.
 
-The two dashboard images were freshly captured from deployed application candidate
-`509ea630`. The receipt and ledger images were recaptured from the same current
-application code with the canonical `$80.00/month` input after an integrity review found
-stale `$250.00/month` evidence in their originals. Native WebMCP replay is recorded, and
-the corrected files' immutable public-repository byte equality is recorded in
-[`../deployed-verification.md`](../deployed-verification.md).
+The current hero was captured from deployed application candidate `b229e915` after the
+prompt and public-link strip shipped. The other four images remain historical V2 evidence
+for the unchanged decision flow. The receipt and ledger images use the canonical
+`$80.00/month` input. Their capture history, native WebMCP checks, and hashes are recorded
+in [`../deployed-verification.md`](../deployed-verification.md).
 
 ## Product surface
 
@@ -25,6 +26,7 @@ commercial ranking, receipt, policy change, clean-room reversal, and staged sele
 ## Layout
 
 - Quiet status header: brand, session, WebMCP availability, commercial pressure.
+- Compact prompt strip: copy-ready agent tests plus direct Devpost and demo-video links.
 - Decision Review is a dominant full-width first-class surface. Intent/policy is a quiet
   context rail; receipt, ledger, bids, and staged selection are secondary audit evidence.
 - Influence Trace reads as one horizontal narrative rail, not four equal dashboard cards.
