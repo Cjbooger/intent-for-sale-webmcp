@@ -117,12 +117,22 @@ test("influence trace never pairs the market winner with a nonwinner receipt", a
 test("agent test prompts remain readable without horizontal overflow", async ({ page }) => {
   for (const viewport of [
     { width: 1440, height: 900 },
+    { width: 1100, height: 900 },
+    { width: 760, height: 900 },
     { width: 360, height: 800 },
   ]) {
     await page.setViewportSize(viewport);
     await page.goto("/");
-    await page.locator(".agent-prompts > summary").click();
+    const prompts = page.locator("details.agent-prompts");
+    const summary = prompts.locator("summary");
+    await summary.focus();
+    await page.keyboard.press("Enter");
 
+    await expect(prompts).toHaveAttribute("open", "");
+    await expect(page.getByRole("link", { name: "Devpost entry" })).toHaveAttribute(
+      "href",
+      "https://devpost.com/software/intent-for-sale",
+    );
     await expect(page.getByRole("heading", { name: "Get a recommendation" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Audit the influence" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Verify native WebMCP" })).toBeVisible();

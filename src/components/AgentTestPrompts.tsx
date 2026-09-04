@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const DEVPOST_ENTRY_URL = "https://devpost.com/software/intent-for-sale";
+
 export const AGENT_TEST_PROMPTS = [
   {
     id: "recommend",
@@ -35,22 +37,40 @@ export const AGENT_TEST_PROMPTS = [
   },
 ] as const;
 
+type CopyFeedback = {
+  id: string;
+  status: "copied" | "failed";
+};
+
 export function AgentTestPrompts() {
-  const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
+  const [copyFeedback, setCopyFeedback] = useState<CopyFeedback | null>(null);
+  const feedbackTitle = AGENT_TEST_PROMPTS.find((item) => item.id === copyFeedback?.id)?.title;
 
   const copyPrompt = (id: string, prompt: string) => {
-    if (!navigator.clipboard) return;
+    if (!navigator.clipboard) {
+      setCopyFeedback({ id, status: "failed" });
+      return;
+    }
     void navigator.clipboard
       .writeText(prompt)
-      .then(() => setCopiedPrompt(id))
-      .catch(() => undefined);
+      .then(() => setCopyFeedback({ id, status: "copied" }))
+      .catch(() => setCopyFeedback({ id, status: "failed" }));
   };
 
   return (
     <details className="agent-prompts">
       <summary>
         <span className="agent-prompts-title">Try it with an agent</span>
-        <span className="agent-prompts-summary">Four copy-ready native WebMCP tests</span>
+        <span className="agent-prompts-summary">Four copy-ready WebMCP tests</span>
+        <a
+          className="agent-prompts-link"
+          href={DEVPOST_ENTRY_URL}
+          target="_blank"
+          rel="noreferrer"
+          onClick={(event) => event.stopPropagation()}
+        >
+          Devpost entry
+        </a>
         <span className="agent-prompts-toggle" aria-hidden="true">+</span>
       </summary>
       <div className="agent-prompts-body">
@@ -65,7 +85,11 @@ export function AgentTestPrompts() {
               <div className="agent-prompt-copy">
                 <p>{item.prompt}</p>
                 <button type="button" onClick={() => copyPrompt(item.id, item.prompt)}>
-                  {copiedPrompt === item.id ? "Copied" : "Copy prompt"}
+                  {copyFeedback?.id === item.id
+                    ? copyFeedback.status === "copied"
+                      ? "Copied"
+                      : "Copy failed"
+                    : "Copy prompt"}
                 </button>
               </div>
             </article>
@@ -74,6 +98,13 @@ export function AgentTestPrompts() {
         <p className="agent-prompts-note">
           Native calls are the proof. If the browser substitutes clicks or fallback handlers,
           the result does not verify WebMCP.
+        </p>
+        <p className="sr-only" role="status" aria-live="polite">
+          {feedbackTitle
+            ? copyFeedback?.status === "copied"
+              ? `${feedbackTitle} prompt copied.`
+              : `${feedbackTitle} prompt could not be copied. Select the text manually.`
+            : ""}
         </p>
       </div>
     </details>

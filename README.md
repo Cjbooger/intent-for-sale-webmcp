@@ -1,6 +1,8 @@
 # INTENT//FOR SALE
 
-## [Open the live demo](https://cjbooger.github.io/intent-for-sale-webmcp/)
+[Live demo](https://cjbooger.github.io/intent-for-sale-webmcp/) ·
+[Devpost entry](https://devpost.com/software/intent-for-sale) ·
+[Source](https://github.com/Cjbooger/intent-for-sale-webmcp)
 
 **The agent becomes the ad impression.**
 
