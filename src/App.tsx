@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { ActivityLedger } from "./components/ActivityLedger";
+import { AgentTestPrompts } from "./components/AgentTestPrompts";
 import { Bidstream } from "./components/Bidstream";
 import { InfluenceReceipt } from "./components/InfluenceReceipt";
 import { InfluenceTrace } from "./components/InfluenceTrace";
@@ -174,6 +175,7 @@ export function App() {
         <div className={`pressure-block ${pressure > 0 ? "is-pressurized" : "is-clear"}`} aria-label={`Commercial pressure ${pressure} percent`}><span className="pressure-label"><b>COMMERCIAL PRESSURE</b><small>DISCLOSED INFLUENCE</small></span><div className="pressure-track"><i style={{ width: `${pressure}%` }} /></div><strong>{pressure}%</strong><em>{pressure > 0 ? "HIGH" : "CLEAR"}</em></div>
       </header>
       <div className="notice-bar" role="note"><span className="notice-dot" /><div className="notice-copy"><strong>FICTIONAL SIMULATION</strong><span>All brands, bids, claims, payouts, and selections are synthetic. Nothing can be purchased.</span></div><b className="notice-guard">NO PURCHASE</b><button className="text-button" onClick={onReset}>Reset demo</button></div>
+      <AgentTestPrompts />
       <main className="dashboard" aria-label="Intent for Sale recommendation decision review">
         <aside className="left-column"><IntentManifest intent={model.intent} phase={model.phase} signalsEnabled={Boolean(model.intent.allowInferredSignals || model.policy.allowInferredSignals)} onCreate={onCreateIntent} /><PolicyConsole policy={policyView} phase={model.phase} onApply={onApplyCleanRoom} onPolicyChange={(next) => runAction("setRecommendationPolicy", [{ sessionId: model.sessionId, ...next }])} /></aside>
         <section className="center-column"><InfluenceTrace marketWinner={traceMarketWinner} receipt={traceReceipt} policy={policyView} policyChanged={tracePolicyChanged} cleanWinner={traceCleanWinner} /><RecommendationBoard offers={model.offers} cleanOffers={model.cleanOffers} phase={model.phase} compared={model.compared} onAudit={onAudit} onStage={(offerId) => setSelectionOfferId(offerId)} /><InfluenceReceipt offer={selectedReceipt} receipt={model.receipt} phase={model.phase} /></section>
