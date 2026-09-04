@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const DEVPOST_ENTRY_URL = "https://devpost.com/software/intent-for-sale";
+const VIDEO_URL = "https://youtu.be/3qy5PAYSi0E";
 
 export const AGENT_TEST_PROMPTS = [
   {
@@ -62,15 +63,26 @@ export function AgentTestPrompts() {
       <summary>
         <span className="agent-prompts-title">Try it with an agent</span>
         <span className="agent-prompts-summary">Four copy-ready WebMCP tests</span>
-        <a
-          className="agent-prompts-link"
-          href={DEVPOST_ENTRY_URL}
-          target="_blank"
-          rel="noreferrer"
-          onClick={(event) => event.stopPropagation()}
-        >
-          Devpost entry
-        </a>
+        <span className="agent-prompts-links">
+          <a
+            className="agent-prompts-link"
+            href={DEVPOST_ENTRY_URL}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(event) => event.stopPropagation()}
+          >
+            Devpost entry
+          </a>
+          <a
+            className="agent-prompts-link"
+            href={VIDEO_URL}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(event) => event.stopPropagation()}
+          >
+            Demo video
+          </a>
+        </span>
         <span className="agent-prompts-toggle" aria-hidden="true">+</span>
       </summary>
       <div className="agent-prompts-body">

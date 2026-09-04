@@ -331,6 +331,11 @@ summary:focus-visible {
   text-align: center;
 }
 
+.agent-prompts-links {
+  display: flex;
+  gap: 6px;
+}
+
 .agent-prompts-link {
   padding: 5px 8px;
   border: 1px solid var(--rule);
@@ -1439,9 +1444,10 @@ summary:focus-visible {
     grid-row: 1 / 4;
   }
 
-  .agent-prompts-link {
+  .agent-prompts-links {
     grid-column: 1;
     grid-row: 3;
+    flex-wrap: wrap;
     justify-self: start;
   }
 

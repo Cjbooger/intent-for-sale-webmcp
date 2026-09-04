@@ -23,6 +23,9 @@ describe("AgentTestPrompts", () => {
     expect(screen.getByRole("link", { name: "Devpost entry" }).getAttribute("href")).toBe(
       "https://devpost.com/software/intent-for-sale",
     );
+    expect(screen.getByRole("link", { name: "Demo video" }).getAttribute("href")).toBe(
+      "https://youtu.be/3qy5PAYSi0E",
+    );
     expect(screen.getByText(/the result does not verify WebMCP/)).toBeTruthy();
   });
 

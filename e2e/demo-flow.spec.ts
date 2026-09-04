@@ -133,6 +133,10 @@ test("agent test prompts remain readable without horizontal overflow", async ({ 
       "href",
       "https://devpost.com/software/intent-for-sale",
     );
+    await expect(page.getByRole("link", { name: "Demo video" })).toHaveAttribute(
+      "href",
+      "https://youtu.be/3qy5PAYSi0E",
+    );
     await expect(page.getByRole("heading", { name: "Get a recommendation" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Audit the influence" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Verify native WebMCP" })).toBeVisible();
